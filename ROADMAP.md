@@ -17,12 +17,12 @@ phase has a **Done when** — don't start the next phase until it's true.
 - [x] Scaffolded: Astro 7, TypeScript strict
 - [x] React, Tailwind, sitemap integrations added
 - [x] `.nvmrc` set to 22
-- [ ] Create repo `robyn-portfolio`, **public**
+- [x] Repo created and pushed: `github.com/altusnix/tech-portfolio` (public, verified via `git ls-remote`)
 - [ ] Cloudflare Pages → connect repo (build: `npm run build`, output: `dist`)
 - [ ] Push, confirm live on `*.pages.dev`
 
 **Done when:** you push a commit and the live URL updates without you doing anything.
-*(Blocked on your GitHub/Cloudflare accounts — not something I can do for you.)*
+*(Cloudflare Pages connection needs your dashboard — not something I can do for you.)*
 
 ---
 
@@ -116,7 +116,8 @@ Folded in from a fresh best-practices checklist. Ordered by what's missing vs. w
 - [x] The resume PDF must never be committed to git — this repo is meant to be public (Phase 0), and committing the file anywhere in its history defeats a server-side gate entirely. Confirmed `public/resume/` was never previously committed, so no history to clean up.
 - [x] `.gitignore` updated with a `.private/` entry (for local-only files never meant to be committed) and `.wrangler/` (local dev state)
 - [x] `@cloudflare/workers-types` installed
-- [~] Draft-only, not wired up or tested: `wrangler.jsonc` (R2 binding scaffold), `.dev.vars.example`, `functions/api/resume.ts` (a Pages Function that would check a password via constant-time comparison against an env var, then stream the PDF from an R2 bucket). None of this is connected to the live site yet.
+- [~] Draft-only, not wired up or tested: `.dev.vars.example`, `functions/api/resume.ts` (a Pages Function that would check a password via constant-time comparison against an env var, then stream the PDF from an R2 bucket). None of this is connected to the live site yet.
+- [x] `wrangler.jsonc` **removed** — its R2 binding pointed at a bucket that doesn't exist yet, which broke Cloudflare Pages' first real deploy (`Missing entry-point to Worker script or to assets directory`). No wrangler config is needed until this phase actually resumes with a real R2 bucket created first; Cloudflare Pages works fine without one for a plain static site.
 - [ ] **Decide:** accept the R2 card-on-file requirement, or use a different storage approach for the gated PDF?
 - [ ] Pick the actual password (not something I should choose for you)
 - [ ] Build the client-side password form (would need a small React island — this is genuinely the one place a bit of JS is unavoidable, since submitting a password and handling a PDF response can't be done with plain HTML)
