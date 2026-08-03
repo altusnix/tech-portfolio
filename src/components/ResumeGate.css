@@ -1,0 +1,75 @@
+.resume-gate {
+  position: relative;
+}
+
+.resume-gate__trigger {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+  background: none;
+  border: none;
+  padding: 0.25rem 0;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.resume-gate__trigger:hover {
+  border-bottom-color: var(--color-brass-dark);
+}
+
+.resume-gate__popover {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  z-index: 60;
+  background: var(--color-bone);
+  border: 1px solid color-mix(in srgb, var(--color-plum) 20%, transparent);
+  border-radius: 4px;
+  padding: 1rem;
+  min-width: 16rem;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--color-ink) 15%, transparent);
+}
+
+.resume-gate__popover form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.resume-gate__label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+}
+
+.resume-gate__popover input {
+  border: 1px solid var(--color-plum);
+  border-radius: 4px;
+  padding: 0.5rem 0.65rem;
+  background: var(--color-bone);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+.resume-gate__error {
+  color: #a33;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+.resume-gate__submit {
+  background: var(--color-plum);
+  color: var(--color-bone);
+  border: none;
+  border-radius: 4px;
+  padding: 0.55rem 1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.resume-gate__submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}

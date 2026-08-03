@@ -2,8 +2,16 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "tech-portfolio",
   "compatibility_date": "2025-01-01",
+  "main": "worker/index.ts",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page"
-  }
+  },
+  "kv_namespaces": [
+    {
+      "binding": "RESUME_KV",
+      "id": "4ebd9c1c10184370a6a0c000ca81900b"
+    }
+  ]
 }

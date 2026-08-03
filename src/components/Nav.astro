@@ -1,14 +1,12 @@
 ---
+import ResumeGate from './ResumeGate.tsx';
+
 const navItems = [
   { href: '/work', label: 'Work' },
   { href: '/about', label: 'About' },
   { href: '/art', label: 'Art' },
   { href: '/contact', label: 'Contact' },
 ];
-
-// TODO: resume link removed temporarily — the PDF is gitignored (contains
-// personal phone/email) until Phase 5b's real password protection is built.
-// Restore the link once that's live.
 
 const currentPath = Astro.url.pathname;
 const isCurrent = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
@@ -26,6 +24,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
           </a>
         </li>
       ))}
+      <li><ResumeGate client:idle /></li>
     </ul>
   </nav>
 
@@ -44,6 +43,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
             </a>
           </li>
         ))}
+        <li><ResumeGate client:idle /></li>
       </ul>
     </nav>
   </details>
