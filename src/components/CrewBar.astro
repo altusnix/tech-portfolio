@@ -1,0 +1,59 @@
+---
+import { crewSentence, type CrewMember } from '../lib/disciplines';
+
+interface Props {
+  myRole: string;
+  crew: CrewMember[];
+}
+
+const { myRole, crew } = Astro.props;
+const present = crew.filter((c) => c.count > 0);
+const label = crewSentence(myRole, crew);
+
+// lead segment always reads as roughly the size of a 1.6-person share,
+// so a solo project (empty crew) still renders a visible bar
+const leadGrow = 1.6;
+---
+
+<div class="crew-bar" role="img" aria-label={label}>
+  <div class="crew-bar__track" aria-hidden="true">
+    <span class="crew-bar__segment crew-bar__segment--lead" style={`flex-grow: ${leadGrow};`}></span>
+    {present.map((c) => (
+      <span class="crew-bar__segment crew-bar__segment--crew" style={`flex-grow: ${c.count};`}></span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .crew-bar__track {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 2.5rem;
+    width: 100%;
+    max-width: 15rem;
+  }
+
+  .crew-bar__segment {
+    display: block;
+    min-width: 6px;
+    border-radius: 2px 2px 0 0;
+  }
+
+  .crew-bar__segment--lead {
+    background: var(--color-brass-dark);
+    height: 100%;
+  }
+
+  .crew-bar__segment--crew {
+    background: var(--color-plum);
+    opacity: 0.55;
+    height: 60%;
+  }
+
+  @media (prefers-contrast: more) {
+    .crew-bar__segment--crew {
+      opacity: 0.85;
+    }
+  }
+</style>

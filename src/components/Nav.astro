@@ -1,0 +1,157 @@
+---
+const navItems = [
+  { href: '/work', label: 'Work' },
+  { href: '/about', label: 'About' },
+  { href: '/art', label: 'Art' },
+  { href: '/contact', label: 'Contact' },
+];
+
+// TODO: resume link removed temporarily — the PDF is gitignored (contains
+// personal phone/email) until Phase 5b's real password protection is built.
+// Restore the link once that's live.
+
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
+---
+
+<header class="site-nav">
+  <a href="/" class="site-nav__brand font-display text-lg text-plum">Robyn Stokes</a>
+
+  <nav aria-label="Primary" class="site-nav__desktop">
+    <ul class="site-nav__links font-body text-sm">
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <details class="site-nav__mobile">
+    <summary aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </summary>
+    <nav aria-label="Primary (mobile)">
+      <ul class="font-body text-base">
+        {navItems.map((item) => (
+          <li>
+            <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </details>
+</header>
+
+<style>
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-bone);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-plum) 15%, transparent);
+  }
+
+  .site-nav__brand {
+    text-decoration: none;
+  }
+
+  .site-nav__links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .site-nav__links a {
+    color: var(--color-ink);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .site-nav__links a:hover {
+    border-bottom-color: var(--color-brass-dark);
+  }
+
+  .site-nav__links a[aria-current='page'] {
+    color: var(--color-brass-dark);
+    border-bottom-color: var(--color-brass-dark);
+    font-weight: 600;
+  }
+
+  /* Mobile disclosure menu — hidden on desktop */
+  .site-nav__mobile {
+    display: none;
+    position: relative;
+  }
+
+  .site-nav__mobile summary {
+    list-style: none;
+    cursor: pointer;
+    color: var(--color-plum);
+    display: flex;
+    padding: 0.25rem;
+  }
+
+  .site-nav__mobile summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .site-nav__mobile[open] summary {
+    color: var(--color-brass-dark);
+  }
+
+  .site-nav__mobile nav {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: 0;
+    background: var(--color-bone);
+    border: 1px solid color-mix(in srgb, var(--color-plum) 20%, transparent);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    min-width: 10rem;
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-ink) 15%, transparent);
+  }
+
+  .site-nav__mobile ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-nav__mobile a {
+    display: block;
+    padding: 0.6rem 1.25rem;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .site-nav__mobile a:hover {
+    background: color-mix(in srgb, var(--color-plum) 8%, transparent);
+  }
+
+  .site-nav__mobile a[aria-current='page'] {
+    color: var(--color-brass-dark);
+    font-weight: 600;
+  }
+
+  @media (max-width: 40rem) {
+    .site-nav__desktop {
+      display: none;
+    }
+
+    .site-nav__mobile {
+      display: block;
+    }
+  }
+</style>

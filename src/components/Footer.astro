@@ -1,0 +1,50 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__row">
+    <p class="text-sm">&copy; {year} Robyn Stokes</p>
+    <nav aria-label="Social links" class="site-footer__social">
+      <a href="https://github.com/altusnix" class="text-sm">GitHub</a>
+      <a href="https://www.linkedin.com/in/robyn42" class="text-sm">LinkedIn</a>
+    </nav>
+  </div>
+  <p class="text-xs font-mono site-footer__stack">
+    Built with Astro, React islands, and Tailwind CSS &mdash; self-hosted fonts, no third-party trackers beyond
+    analytics.
+  </p>
+</footer>
+
+<style>
+  .site-footer {
+    max-width: 60rem;
+    margin-inline: auto;
+    padding: 2.5rem 1.5rem 3rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-plum) 20%, transparent);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .site-footer__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .site-footer__social {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .site-footer a {
+    color: var(--color-plum);
+  }
+
+  .site-footer__stack {
+    color: var(--color-plum);
+  }
+</style>

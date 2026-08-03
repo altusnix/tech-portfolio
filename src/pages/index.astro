@@ -1,17 +1,261 @@
 ---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ArtPlate from '../components/ArtPlate.astro';
+import { clientLogos } from '../lib/clients';
+import { exhibitions } from '../lib/exhibitions';
 
+const allProjects = await getCollection('projects');
+const featured = allProjects.filter((p) => p.data.featured).sort((a, b) => a.data.order - b.data.order);
+
+const artImages = import.meta.glob<{ default: ImageMetadata }>('../assets/art-portfolio/*.{jpg,jpeg}', { eager: true });
+function resolveImage(filename: string) {
+  const entry = Object.entries(artImages).find(([path]) => path.endsWith(`/${filename}`));
+  if (!entry) throw new Error(`Missing art image: ${filename}`);
+  return entry[1].default;
+}
+const artTeaser = exhibitions.slice(0, 3);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Robyn Stokes — Technology Leader & Visual Artist"
+  description="20+ years leading cross-functional teams through large-scale digital transformations for Fortune 500 clients — also an exhibiting visual artist."
+>
+  <section class="hero">
+    <h1 class="font-display text-plum hero__title">I don't ship alone.<br />I ship teams.</h1>
+    <p class="text-lg hero__sub">
+      Technology Lead building large-scale digital platforms with cross-functional teams &mdash; most recently at
+      Critical Mass, delivering goarmy.com for the U.S. Army and other Fortune 500 clients.
+    </p>
+    <div class="hero__actions">
+      <a href="/work" class="hero__cta hero__cta--primary">View the work</a>
+      <a href="/art" class="hero__cta hero__cta--secondary">See the art</a>
+    </div>
+  </section>
+
+  <!--
+    TODO: draft personal statement — please edit, especially the specifics
+    I'm guessing at (exact role type, remote/hybrid preference, industries)
+  -->
+  <section class="statement">
+    <p class="text-lg">
+      I'm looking for my next Technology Lead or engineering leadership role &mdash; ideally one where the work still
+      touches both sides of what I do: shipping accessible, AI-augmented platforms at scale, and leading the people
+      who build them. Five years leading cross-functional teams through complex government and enterprise platforms
+      taught me those aren't actually separate skills. Open to remote or Chicago-area roles.
+    </p>
+  </section>
+
+  <section class="stats" aria-label="Leadership at a glance">
+    <ul class="stats__grid">
+      <li>
+        <span class="stats__number font-display">20+</span>
+        <span class="stats__label text-sm">Years leading technical teams</span>
+      </li>
+      <li>
+        <span class="stats__number font-display">6&ndash;10</span>
+        <span class="stats__label text-sm">Developers led as direct reports</span>
+      </li>
+      <li>
+        <span class="stats__number font-display">14 mo</span>
+        <span class="stats__label text-sm">To promotion, Technology Lead</span>
+      </li>
+      <li>
+        <span class="stats__number font-display">Millions</span>
+        <span class="stats__label text-sm">Monthly visitors on goarmy.com</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="featured" aria-labelledby="featured-heading">
+    <h2 id="featured-heading" class="font-display text-xl text-plum section-heading">Featured work</h2>
+    <div class="featured__grid">
+      {featured.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+    <a href="/work" class="section-link">All work &rarr;</a>
+  </section>
+
+  <section class="client-wall" aria-labelledby="clients-heading">
+    <h2 id="clients-heading" class="font-display text-xl text-bone section-heading section-heading--dark">
+      Trusted by
+    </h2>
+    <ul class="client-wall__grid">
+      {clientLogos.map((client) => (
+        <li>
+          <img src={client.src} alt={client.name} loading="lazy" />
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="art-teaser" aria-labelledby="art-heading">
+    <h2 id="art-heading" class="font-display text-xl text-plum section-heading">Visual art</h2>
+    <p class="text-base art-teaser__sub">
+      Exhibiting nationally and internationally &mdash; art is a driving passion in its own right.
+    </p>
+    <div class="art-teaser__grid">
+      {artTeaser.map((ex) => (
+        <ArtPlate image={resolveImage(ex.image)} imageAlt={ex.title} title={ex.title} venue={ex.venue} city={ex.city} date={ex.date} />
+      ))}
+    </div>
+    <a href="/art" class="section-link">Full exhibition history &rarr;</a>
+  </section>
+
+  <section class="contact-teaser">
+    <h2 class="font-display text-xl text-plum">Let's talk about what you're building.</h2>
+    <a href="/contact" class="hero__cta hero__cta--primary">Get in touch</a>
+  </section>
+</Layout>
+
+<style>
+  .hero,
+  .featured,
+  .art-teaser,
+  .contact-teaser {
+    max-width: 60rem;
+    margin-inline: auto;
+    padding: 3rem 1.5rem;
+  }
+
+  .hero {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  .hero__title {
+    font-size: clamp(3rem, 4vw + 2rem, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+  }
+
+  .hero__sub {
+    max-width: 34rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .hero__cta {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .hero__cta--primary {
+    background: var(--color-plum);
+    color: var(--color-bone);
+  }
+
+  .hero__cta--secondary {
+    border: 1px solid var(--color-plum);
+    color: var(--color-plum);
+  }
+
+  .section-heading {
+    margin-bottom: 0.5rem;
+  }
+
+  .section-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--color-plum);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+
+  .statement {
+    max-width: 44rem;
+    margin: 0 auto 3rem;
+    padding-inline: 1.5rem;
+    border-left: 3px solid var(--color-brass-dark);
+    padding-left: 1.5rem;
+  }
+
+  .stats {
+    background: var(--color-ink);
+    padding: 3.5rem 1.5rem;
+  }
+
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 2rem;
+    max-width: 60rem;
+    margin-inline: auto;
+    list-style: none;
+    text-align: center;
+  }
+
+  .stats__number {
+    display: block;
+    font-size: clamp(2.25rem, 3vw + 1rem, 3.25rem);
+    color: var(--color-brass);
+    line-height: 1;
+  }
+
+  .stats__label {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--color-bone);
+    opacity: 0.8;
+  }
+
+  .client-wall {
+    background: var(--color-plum);
+    padding: 3rem 1.5rem;
+  }
+
+  .client-wall .section-heading--dark {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  .client-wall__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 2rem;
+    max-width: 64rem;
+    margin: 1.5rem auto 0;
+    list-style: none;
+    align-items: center;
+  }
+
+  .client-wall__grid img {
+    max-width: 100%;
+    max-height: 2.5rem;
+    filter: grayscale(1) brightness(1.6);
+    opacity: 0.85;
+  }
+
+  .featured__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 2.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .art-teaser__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .contact-teaser {
+    text-align: center;
+    padding-block: 4rem;
+  }
+
+  .contact-teaser .hero__cta {
+    margin-top: 1.5rem;
+  }
+</style>

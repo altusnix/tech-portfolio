@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArtPlate from '../components/ArtPlate.astro';
+import { exhibitions } from '../lib/exhibitions';
+
+const artImages = import.meta.glob<{ default: ImageMetadata }>('../assets/art-portfolio/*.{jpg,jpeg}', { eager: true });
+
+function resolveImage(filename: string) {
+  const entry = Object.entries(artImages).find(([path]) => path.endsWith(`/${filename}`));
+  if (!entry) throw new Error(`Missing art image: ${filename}`);
+  return entry[1].default;
+}
+
+// group by year, most recent first — the timeline the roadmap asks for
+const byYear = new Map<string, typeof exhibitions>();
+for (const ex of exhibitions) {
+  const year = ex.date.split(' ').pop()!;
+  if (!byYear.has(year)) byYear.set(year, []);
+  byYear.get(year)!.push(ex);
+}
+const years = [...byYear.keys()].sort((a, b) => Number(b) - Number(a));
+---
+
+<Layout
+  title="Art — Robyn Stokes"
+  description="Exhibition history and visual art practice by Robyn Stokes, spanning galleries in the U.S. and abroad."
+>
+  <section class="art-page">
+    <header class="art-page__header">
+      <h1 class="font-display text-2xl text-plum">Visual Art</h1>
+      <p class="text-lg">
+        Exhibited nationally and internationally. Art is a driving passion in its own right &mdash; and it continually
+        informs how I approach visual problem-solving in technology work too.
+      </p>
+    </header>
+
+    {years.map((year) => (
+      <div class="art-page__year">
+        <h2 class="font-display text-xl text-plum">{year}</h2>
+        <div class="art-page__grid">
+          {byYear.get(year)!.map((ex) => (
+            <ArtPlate
+              image={resolveImage(ex.image)}
+              imageAlt={ex.title}
+              title={ex.title}
+              venue={ex.venue}
+              city={ex.city}
+              date={ex.date}
+            />
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+</Layout>
+
+<style>
+  .art-page {
+    max-width: 64rem;
+    margin-inline: auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .art-page__header {
+    padding-block: 1rem 2.5rem;
+    max-width: 40rem;
+  }
+
+  .art-page__year {
+    padding-block-end: 3rem;
+  }
+
+  .art-page__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+</style>

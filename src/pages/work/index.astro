@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import ProjectEntry from '../../components/ProjectEntry.astro';
+import { sortProjectsNewestFirst } from '../../lib/projects';
+
+const allProjects = await getCollection('projects');
+const projects = sortProjectsNewestFirst(allProjects);
+---
+
+<Layout
+  title="Work — Robyn Stokes"
+  description="Technology projects led and built by Robyn Stokes, spanning government platforms, enterprise systems, and immersive experiences."
+>
+  <section class="work-index">
+    <header class="work-index__header">
+      <h1 class="font-display text-2xl text-plum">Work</h1>
+      <p class="text-lg">Government platforms, enterprise systems, and immersive experiences — built with teams ranging from solo to eleven.</p>
+    </header>
+
+    <div class="work-index__list">
+      {projects.map((project) => (
+        <ProjectEntry project={project} />
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .work-index {
+    max-width: 60rem;
+    margin-inline: auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .work-index__header {
+    padding-block: 1rem 2rem;
+    border-bottom: 1px solid var(--color-plum);
+  }
+
+  .work-index__list > :global(.project-entry) {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-plum) 20%, transparent);
+  }
+
+  .work-index__list > :global(.project-entry:last-child) {
+    border-bottom: none;
+  }
+</style>

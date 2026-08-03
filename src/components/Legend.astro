@@ -1,0 +1,54 @@
+---
+import { disciplineLabels, type CrewMember } from '../lib/disciplines';
+
+interface Props {
+  myRole: string;
+  crew: CrewMember[];
+}
+
+const { myRole, crew } = Astro.props;
+const present = crew.filter((c) => c.count > 0);
+---
+
+<ul class="legend text-xs font-mono">
+  <li class="legend__item">
+    <span class="legend__swatch legend__swatch--lead" aria-hidden="true"></span>
+    Robyn &mdash; {myRole}
+  </li>
+  {present.map((c) => (
+    <li class="legend__item">
+      <span class="legend__swatch" aria-hidden="true"></span>
+      {c.count} {c.count === 1 ? disciplineLabels[c.discipline].singular : disciplineLabels[c.discipline].plural}
+    </li>
+  ))}
+</ul>
+
+<style>
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    list-style: none;
+    margin-top: 0.5rem;
+  }
+
+  .legend__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .legend__swatch {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 1px;
+    background: var(--color-plum);
+    opacity: 0.55;
+  }
+
+  .legend__swatch--lead {
+    background: var(--color-brass-dark);
+    opacity: 1;
+  }
+</style>

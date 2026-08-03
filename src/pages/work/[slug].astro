@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import ProjectEntry from '../../components/ProjectEntry.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { title, client, scope } = project.data;
+---
+
+<Layout title={`${title} — Robyn Stokes`} description={`${client}: ${scope}`}>
+  <article class="case-study">
+    <a href="/work" class="case-study__back text-sm">&larr; All work</a>
+    <ProjectEntry project={project} />
+  </article>
+</Layout>
+
+<style>
+  .case-study {
+    max-width: 60rem;
+    margin-inline: auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .case-study__back {
+    display: inline-block;
+    margin-block-end: 1rem;
+    color: var(--color-plum);
+    text-decoration: none;
+  }
+
+  .case-study__back:hover {
+    text-decoration: underline;
+  }
+</style>

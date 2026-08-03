@@ -1,0 +1,30 @@
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    client: z.string(),
+    yearStart: z.number(),
+    yearEnd: z.number().optional(),        // omit = ongoing
+    myRole: z.string(),                     // "Technology Lead"
+    crew: z.array(z.object({
+      discipline: z.enum([
+        'front-end', 'back-end', 'design',
+        'qa', 'product', 'content'
+      ]),
+      count: z.number(),
+    })),
+    stack: z.array(z.string()),
+    problem: z.string(),                    // one sentence, what was broken/needed before
+    scope: z.string(),                      // one sentence, what was built (the process)
+    outcome: z.string(),                    // one sentence, what changed
+    cover: image(),
+    coverAlt: z.string(),                   // required — no decorative covers
+    featured: z.boolean().default(false),
+    order: z.number(),
+  }),
+});
+
+export const collections = { projects };

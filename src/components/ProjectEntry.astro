@@ -1,0 +1,92 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import CrewBar from './CrewBar.astro';
+import Legend from './Legend.astro';
+import { formatDateRange } from '../lib/projects';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, client, yearStart, yearEnd, myRole, crew, stack, problem, scope, outcome, cover, coverAlt } = project.data;
+
+const dateRange = formatDateRange(yearStart, yearEnd);
+---
+
+<article class="project-entry">
+  <Image
+    src={cover}
+    alt={coverAlt}
+    class="project-entry__cover"
+    widths={[500, 900, 1400]}
+    sizes="(min-width: 768px) 60rem, 100vw"
+  />
+
+  <div class="project-entry__content">
+    <header class="project-entry__header">
+      <h3 class="font-display text-xl text-plum">{title}</h3>
+      <p class="project-entry__meta text-sm">{client} &middot; {dateRange}</p>
+    </header>
+
+    <p class="project-entry__beat text-base"><strong>Problem:</strong> {problem}</p>
+
+    <CrewBar myRole={myRole} crew={crew} />
+    <Legend myRole={myRole} crew={crew} />
+
+    <p class="project-entry__beat text-base"><strong>Process:</strong> {scope}</p>
+    <p class="project-entry__beat text-base"><strong>Outcome:</strong> {outcome}</p>
+
+    <ul class="project-entry__stack text-xs font-mono" aria-label="Technology stack">
+      {stack.map((tech) => <li>{tech}</li>)}
+    </ul>
+  </div>
+</article>
+
+<style>
+  .project-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-block: 3rem;
+  }
+
+  .project-entry__cover {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 2px;
+  }
+
+  .project-entry__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 34rem;
+  }
+
+  .project-entry__beat strong {
+    color: var(--color-plum);
+  }
+
+  .project-entry__meta {
+    color: var(--color-plum);
+    opacity: 0.75;
+  }
+
+  .project-entry__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin-top: 0.25rem;
+  }
+
+  .project-entry__stack li {
+    border: 1px solid var(--color-plum);
+    border-radius: 999px;
+    padding: 0.15rem 0.65rem;
+  }
+</style>

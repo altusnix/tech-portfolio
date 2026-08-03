@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Page not found — Robyn Stokes">
+  <section class="not-found">
+    <h1 class="font-display text-2xl text-plum">Page not found</h1>
+    <p class="text-lg">That page doesn't exist. Try the work below, or head back home.</p>
+    <nav class="not-found__links text-base" aria-label="Suggested pages">
+      <a href="/">Home</a>
+      <a href="/work">Work</a>
+      <a href="/about">About</a>
+      <a href="/art">Art</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </section>
+</Layout>
+
+<style>
+  .not-found {
+    max-width: 40rem;
+    margin-inline: auto;
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .not-found__links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .not-found__links a {
+    color: var(--color-plum);
+  }
+</style>
