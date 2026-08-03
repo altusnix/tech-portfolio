@@ -14,31 +14,23 @@ Supersedes `roadmap_1.md` (v1) and the prior version of this file (v2). Work top
 Everything below this section is done. This is the real, current punch list — ordered by what breaks the
 site's core argument if left undone.
 
-1. **🔴 Unverified: live images may still be broken.** Cloudflare deployed this as a **Workers** project, which
-   defaults to running Astro in SSR mode — the live site was requesting images through an on-demand
-   `/_image?href=...` endpoint that 404s, instead of the pre-built static WebP files our local build produces.
-   Just pushed a fix (`wrangler.jsonc` with `assets.directory`, telling Cloudflare to serve `dist/` as pure
-   static files, no server code). **Not yet confirmed live** — check `https://tech-portfolio.altusnix.workers.dev/work/goarmy/`
-   and look for a normal image, not a broken icon.
-2. **7 of 9 projects need a real outcome metric** — Rentals, Phonebook, Coke/Sonic, Abbvie, TAE, Seagen, Client
+1. **7 of 9 projects need a real outcome metric** — Rentals, Phonebook, Coke/Sonic, Abbvie, TAE, Seagen, Client
    Portal. Needs your input; the resume didn't call these out individually. (Phase 1)
-3. **Testimonials decision** — declined once already; the hireability checklist raised it again. Final answer,
+2. **Testimonials decision** — declined once already; the hireability checklist raised it again. Final answer,
    or leave as declined? (Phase 5)
-4. **Personal statement** — drafted on the homepage, needs your edit (role type, remote/Chicago preference,
+3. **Personal statement** — drafted on the homepage, needs your edit (role type, remote/Chicago preference,
    industries were guessed). (Phase 5)
-5. **Phase 5b (resume password protection) — fully built and tested locally, only Cloudflare account setup
-   left.** Went with KV over R2 (no card needed) and over storing the file on a private GitHub/GitLab repo
-   (same setup cost as R2, plus an external API dependency, no real upside). Tested the complete flow via
-   `wrangler dev` with the real PDF in local KV: wrong password → 401, correct password → the actual 2-page PDF,
-   byte-for-byte. What's left is pure Cloudflare dashboard work: create the real KV namespace, upload the PDF to
-   it, set `RESUME_PASSWORD` as a production secret — no more code anticipated.
-6. **Phase 7 (accessibility audit) — paused mid-way.** Homepage scores 100/100/99/100 on Lighthouse; other
+4. **Phase 7 (accessibility audit) — paused mid-way.** Homepage scores 100/100/99/100 on Lighthouse; other
    routes score 94–96 and haven't been root-caused. Paused once at your request ("skip until more
    components"); more components exist now (gallery, lightbox, tech filters, resume gate).
-7. **Employee-directory screenshot excluded from the Phonebook gallery** — real people's names/cell numbers.
+5. **Employee-directory screenshot excluded from the Phonebook gallery** — real people's names/cell numbers.
    Waiting on your redacted version to add back. (Phase 1)
-8. **Phase 8 launch items still open** — OG image, Open Graph testing, the domain decision, the old-Netlify-URL
+6. **Phase 8 launch items still open** — OG image, Open Graph testing, the domain decision, the old-Netlify-URL
    redirect, LinkedIn/GitHub profile link updates, README. (Analytics and favicon are done — see Phase 8.)
+
+Phase 5b (resume password protection) is fully done — built, deployed, and confirmed working directly against
+production (wrong password → 401, correct password → the real PDF). Live images are also confirmed fixed
+(real static WebP URLs, no broken on-demand endpoint).
 
 Phase 6 (contact form) is fully done — confirmed working end-to-end from a real phone submission.
 
@@ -137,7 +129,7 @@ Phase 6 (contact form) is fully done — confirmed working end-to-end from a rea
 
 ---
 
-## Phase 5b — Resume password protection
+## Phase 5b — Resume password protection ✅
 
 **Goal:** the resume link requires a real password before the PDF can be viewed or downloaded — not just a UI gate.
 
@@ -166,17 +158,17 @@ values up to 25MB are fine for one small PDF.
   - Wrong password → `401 "Incorrect password"`
   - Correct password → `200`, real PDF returned, 124,377 bytes matching the source file exactly, verified as
     a valid 2-page PDF via `file`
-- [ ] **Production setup still needed** (all requires your Cloudflare account, not something done from here):
-  - Create the real KV namespace (`wrangler kv namespace create RESUME_KV` or via the dashboard) and swap the
-    placeholder id in `wrangler.jsonc`
-  - Upload the real PDF to that namespace (`--remote`, not `--local`)
-  - Set `RESUME_PASSWORD` as a secret in the Cloudflare dashboard (`.dev.vars` only covers local testing)
-  - Confirm live, then remove the plain unprotected copy from `public/resume/` for good
+- [x] Real KV namespace created via the dashboard, real id wired into `wrangler.jsonc`
+- [x] Real PDF uploaded to the production namespace (`wrangler kv key put ... --remote`, after authenticating
+  via `wrangler login`)
+- [x] `RESUME_PASSWORD` set as a real secret on the Worker (`wrangler secret put`)
+- [x] Pushed and deployed — **confirmed working directly against production**, not just assumed from a
+  successful push: wrong password → `401`; correct password → `200`, the real PDF, 124,377 bytes, byte-for-byte
+  match with the source file
+- [ ] Remove the plain unprotected copy from `public/resume/` now that the gated version is live (currently
+  still gitignored and present locally/in old commits' working tree — not committed, but worth cleaning up)
 
-**Current state:** everything is built and proven working locally. What's left is entirely account setup on
-Cloudflare's side — no more code changes anticipated unless something unexpected comes up in production.
-
-**Done when:** the real namespace exists, the real PDF is in it, the password secret is set, and the live gate works.
+**Done when:** ✅ done. Live, tested against production, working.
 
 ---
 
