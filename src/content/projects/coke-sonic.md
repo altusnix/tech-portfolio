@@ -24,6 +24,19 @@ scope: Led front-end development of an immersive, gamified brand experience for 
 outcome: "TODO: measurable outcome — resume doesn't call out a specific metric for this one; add engagement/franchise adoption numbers if you have them"
 cover: ../../assets/projects/coke-home.png
 coverAlt: Coke and Sonic interactive homepage experience
+gallery:
+  - image: ../../assets/projects/coke-hover-home.png
+    alt: Interactive hotspot showing the Operations equipment area on the virtual restaurant
+  - image: ../../assets/projects/cats.png
+    alt: Categories available for franchise marketing materials — Brown Bag Special, Cherry Limeade, Combo Upgrade, and more
+  - image: ../../assets/projects/catlp.png
+    alt: Product visualization and ordering panel for Cherry Limeade marketing elements
+  - image: ../../assets/projects/mixup.png
+    alt: "\"Mix It Up\" game: naming and submitting a custom drink combination"
+  - image: ../../assets/projects/station.png
+    alt: Detailed equipment station view in the Coke Toolbox operations area
+  - image: ../../assets/projects/stationhover.png
+    alt: Equipment hotspot showing Sonic UDM Dispenser details and download link
 featured: false
 order: 3
 ---

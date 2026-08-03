@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ProjectEntry from '../../components/ProjectEntry.astro';
+import ProjectGallery from '../../components/ProjectGallery.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -19,6 +20,7 @@ const { title, client, scope } = project.data;
   <article class="case-study">
     <a href="/work" class="case-study__back text-sm">&larr; All work</a>
     <ProjectEntry project={project} />
+    <ProjectGallery images={project.data.gallery} />
   </article>
 </Layout>
 

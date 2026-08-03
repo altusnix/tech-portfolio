@@ -79,9 +79,7 @@ const artTeaser = exhibitions.slice(0, 3);
   </section>
 
   <section class="client-wall" aria-labelledby="clients-heading">
-    <h2 id="clients-heading" class="font-display text-xl text-bone section-heading section-heading--dark">
-      Trusted by
-    </h2>
+    <h2 id="clients-heading" class="font-mono text-sm client-wall__heading">Trusted by</h2>
     <ul class="client-wall__grid">
       {clientLogos.map((client) => (
         <li>
@@ -214,24 +212,32 @@ const artTeaser = exhibitions.slice(0, 3);
     padding: 3rem 1.5rem;
   }
 
-  .client-wall .section-heading--dark {
-    max-width: 48rem;
-    margin-inline: auto;
+  .client-wall__heading {
+    display: block;
+    text-align: center;
+    color: var(--color-brass);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 2rem;
   }
 
   .client-wall__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 2rem;
-    max-width: 64rem;
-    margin: 1.5rem auto 0;
-    list-style: none;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 100px));
+    justify-content: center;
+    justify-items: center;
     align-items: center;
+    gap: 1.5rem 2rem;
+    max-width: 56rem;
+    margin: 0 auto;
+    list-style: none;
   }
 
   .client-wall__grid img {
+    width: auto;
+    height: 1.5rem;
     max-width: 100%;
-    max-height: 2.5rem;
+    object-fit: contain;
     filter: grayscale(1) brightness(1.6);
     opacity: 0.85;
   }

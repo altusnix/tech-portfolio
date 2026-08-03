@@ -22,6 +22,13 @@ scope: Conceptualized, designed, and developed the internal Czarnowski Phonebook
 outcome: "TODO: measurable outcome — resume doesn't call out Phonebook specifically; add usage numbers if you have them"
 cover: ../../assets/projects/Czarnowski-Phonebook-Home-Page.jpg
 coverAlt: Czarnowski Phonebook homepage
+gallery:
+  - image: ../../assets/projects/Czarnowski-Admin-Dashboard-Czarnowski-Phonebook.jpg
+    alt: Phonebook admin dashboard for managing office locations and divisions
+  # TODO: a location/employee-listing screenshot exists but is excluded —
+  # it shows real employees' names and personal cell phone numbers, which
+  # shouldn't be published. Add back once a redacted/blurred version exists
+  # (see ROADMAP.md).
 featured: false
 order: 4
 ---

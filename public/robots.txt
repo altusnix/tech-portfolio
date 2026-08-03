@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tech-portfolio.altusnix.workers.dev/sitemap-index.xml

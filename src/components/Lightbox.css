@@ -1,0 +1,134 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 1rem;
+  list-style: none;
+  margin-top: 0.5rem;
+  padding: 0;
+}
+
+.gallery__thumb-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.gallery__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 2px;
+  transition: opacity 0.15s ease;
+}
+
+.gallery__thumb-button:hover .gallery__image,
+.gallery__thumb-button:focus-visible .gallery__image {
+  opacity: 0.85;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-ink) 90%, transparent);
+}
+
+.lightbox__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: min(90vw, 64rem);
+  max-height: 90vh;
+}
+
+.lightbox__image {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 2px;
+}
+
+.lightbox__caption {
+  color: var(--color-bone);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-align: center;
+  margin: 0;
+  max-width: 40rem;
+}
+
+.lightbox__count {
+  opacity: 0.7;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: -3rem;
+  right: 0;
+  color: var(--color-bone);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-bone);
+  background: color-mix(in srgb, var(--color-ink) 60%, transparent);
+  border: none;
+  border-radius: 999px;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.lightbox__nav--prev {
+  left: -1rem;
+}
+
+.lightbox__nav--next {
+  right: -1rem;
+}
+
+@media (max-width: 40rem) {
+  .lightbox__nav--prev {
+    left: 0.25rem;
+  }
+
+  .lightbox__nav--next {
+    right: 0.25rem;
+  }
+
+  .lightbox__close {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery__image {
+    transition: none;
+  }
+}

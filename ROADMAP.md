@@ -18,11 +18,9 @@ phase has a **Done when** — don't start the next phase until it's true.
 - [x] React, Tailwind, sitemap integrations added
 - [x] `.nvmrc` set to 22
 - [x] Repo created and pushed: `github.com/altusnix/tech-portfolio` (public, verified via `git ls-remote`)
-- [ ] Cloudflare Pages → connect repo (build: `npm run build`, output: `dist`)
-- [ ] Push, confirm live on `*.pages.dev`
+- [x] Cloudflare connected and live at `https://tech-portfolio.altusnix.workers.dev/` — verified via curl, confirmed it's serving current content (not stale), not just a 200 on an empty shell. (Landed on a `*.workers.dev` URL rather than `*.pages.dev` — Cloudflare's Pages product has been folding into the Workers platform's static-assets model; either way, it's live and this is the domain everything else now points to.)
 
-**Done when:** you push a commit and the live URL updates without you doing anything.
-*(Cloudflare Pages connection needs your dashboard — not something I can do for you.)*
+**Done when:** you push a commit and the live URL updates without you doing anything. *(True as of this session — the wrangler.jsonc fix earlier was what unblocked the first successful deploy.)*
 
 ---
 
@@ -30,15 +28,17 @@ phase has a **Done when** — don't start the next phase until it's true.
 
 **Goal:** every project described by identical structured fields.
 
-- [x] Schema defined (`src/content.config.ts`) — title, client, dates, myRole, crew, stack, scope, outcome, cover, coverAlt, featured, order
-- [x] All 10 projects drafted, including Client Inventory Management Portal (completed using resume detail, not cut)
+- [x] Schema defined (`src/content.config.ts`) — title, client, dates, myRole, crew, stack, problem, scope, outcome, cover, coverAlt, gallery, featured, order
+- [x] 9 projects (was 10 — see Voximetry merge below), including Client Inventory Management Portal (completed using resume detail, not cut)
 - [x] Abbvie Skyrizi / TAE Lifesciences / Seagen rewritten with real, distinct scope text (resume-sourced) — no longer duplicated placeholder copy
 - [x] GOARMY has real dates (2021–2026) and a real, measurable outcome
-- [ ] **8 of 10 projects still need a real outcome metric** — Rentals, Phonebook, Coke/Sonic, Abbvie, TAE, Seagen, Client Portal, Vox Explore Torch, Voximetry 360. Resume didn't call these out individually; need your input or actual numbers.
+- [x] **Voximetry question resolved — with real proof, not just inference.** New screenshots (`vox360Nav.png`) literally show a navigation menu with "Lobby / Torch Lab / Discovery Center" inside one branded "Voximetry" environment — "Vox Explore Torch" was just the Torch Lab room, not a separate client. Merged the two entries into one accurate `voximetry-360.md`; project count is now 9, not 10. Also fixed the "solo" framing to match the resume's "collaborating with 3D artists, designers, and backend developers" — crew count on this one is still an estimate, flagged in the file.
+- [x] **Image galleries added** for Coke/Sonic (6 images), TAE Lifesciences (1), Czarnowski Phonebook (1), Voximetry (6) — sourced from your `web-portfolio-screens` folder, each one visually verified before attribution rather than guessed from filenames
+- [ ] **Excluded from the Phonebook gallery:** a screenshot of the real employee directory (names + personal cell numbers of actual Czarnowski staff) — that's other people's PII and shouldn't be published regardless of gating. You're going to blur it; add back once redacted.
+- [ ] **7 of 9 projects still need a real outcome metric** — Rentals, Phonebook, Coke/Sonic, Abbvie, TAE, Seagen, Client Portal. Resume didn't call these out individually; need your input or actual numbers.
 - [ ] Czarnowski-era projects use an approximate 2016–2021 range (your employment dates there), not exact per-project years — tighten if you know the real ones
-- [ ] **Open question:** is "Voximetry" Czarnowski's platform/product name, or a separate real client? Resume suggests the former (collaborative, not solo) — Voximetry 360 / Vox Explore Torch currently still show solo/separate-client, flagged but unresolved
 
-**Done when:** all 10 markdown files have a real outcome metric, not a TODO placeholder.
+**Done when:** all 9 markdown files have a real outcome metric, not a TODO placeholder.
 
 ---
 
@@ -70,7 +70,7 @@ phase has a **Done when** — don't start the next phase until it's true.
 ## Phase 4 — Pages
 
 - [x] `/` — hero, leadership stat band (new), featured work as a 3-card grid, client wall, art teaser, contact CTA
-- [x] `/work` — all 10 projects, newest-first sort (currently ties on year until Phase 1's dates are filled in)
+- [x] `/work` — all 9 projects, newest-first sort (currently ties on year until Phase 1's dates are filled in)
 - [x] `/work/[slug]` — full case study per project
 - [x] `/about` — bio, Burton Chill detail, education, recognition, new Skills section
 - [x] `/art` — real exhibition timeline, deduped the `5.jpeg` reuse bug (old site used one image for two different shows)
@@ -79,6 +79,10 @@ phase has a **Done when** — don't start the next phase until it's true.
 - [x] Location fixed: Detroit Metropolitan Area (was "Digital Realm, Cyberspace")
 - [x] Resume link swapped to `Robyn-Stokes-Resume-2026.pdf` (found on your Desktop, matching filename)
 - [ ] Homepage hero doesn't currently show name/title/contact info directly (see Phase 5 below)
+- [x] **Fixed a real navigation dead-end:** `/work` used to render the *full* case-study content inline for every project (duplicating what `/work/[slug]` shows), so nothing ever linked to the individual case study pages — they were only reachable by typing the URL directly. `/work` is now a `ProjectCard` grid that actually links through.
+- [x] **Case study galleries are clickable** — built `Lightbox.tsx` (React island, `client:visible`) with keyboard nav (←/→/Esc), focus trap, and focus-return-to-trigger on close. Astro's `getImage()` precomputes thumb + full-size WebP so the island only handles interaction state, not image processing.
+- [x] **Tech stack pills are real filters** — clicking "React" on a case study goes to `/work/tech/react`, a statically-generated page (one per unique technology, 22 total) listing every project that uses it. Restyled the pills with real hover/focus states so they read as clickable, not just decorative.
+- [x] **Fixed invisible client logos** — a real Chromium bug: SVGs loaded via `<img>` with only a `viewBox` (no explicit width/height) collapse to zero size inside CSS Grid with `justify-items: center`. AbbVie, GM, Grainger, Lexus, Porsche, Coca-Cola were all silently invisible. Fixed by giving the images an explicit height + `object-fit: contain` instead of `max-height` alone. Also centered and shrunk the logo grid, and restyled "Trusted by" as a visible brass uppercase label (was blending into the background).
 
 **Done when:** every route works, no page repeats text verbatim from another. *(True today, modulo the resume-link swap above.)*
 
@@ -91,9 +95,9 @@ Folded in from a fresh best-practices checklist. Ordered by what's missing vs. w
 - [~] **Personal statement / what you're looking for** — drafted on the homepage (right after the hero), clearly flagged as a TODO for you to edit. Guessed at role type, remote/Chicago preference, and industries — correct or rewrite as needed
 - [x] Resume link swapped to the 2026 PDF (see Phase 4)
 - [x] **Certifications section — skipped.** No formal certs on the resume (Scrum Master etc. are skills, not credentials); you confirmed no section needed
-- [x] **Case study structure** — restructured to explicit problem → role → process → outcome. Added a `problem` field to the schema; `myRole`/crew already covered role, `scope` already covered process. Filled in for all 10 projects — 6 are well-grounded, 4 (Abbvie, TAE, Seagen, Vox Explore Torch, Voximetry 360) are honestly flagged as inferred/unsourced since the resume didn't give a specific brief for those
+- [x] **Case study structure** — restructured to explicit problem → role → process → outcome. Added a `problem` field to the schema; `myRole`/crew already covered role, `scope` already covered process. Filled in for all projects — most are well-grounded, a few (Abbvie, Seagen, Voximetry) are honestly flagged as partially inferred since the resume didn't give a specific brief for those
 - [ ] **Testimonials/references** — you declined using the two named LinkedIn recommendations earlier; this checklist raises it again. Reconsider, or still no?
-- [x] Featured work curated (3 of 10 flagged featured, not all 10 dumped on the homepage)
+- [x] Featured work curated (3 of 9 flagged featured, not all 9 dumped on the homepage)
 - [x] Clear contact method (email + form page)
 - [x] Mobile-responsive layout — tested for real via screenshot at 390px width; found and fixed a real horizontal-overflow bug (nav had no mobile treatment at all). Nav rebuilt with a sticky header + no-JS `<details>`/`<summary>` dropdown menu on mobile
 - [~] Fast load / optimized images — Astro's `<Image />` already converts covers to responsive WebP (one PNG went 3.9MB → ~11–120KB across breakpoints); Lighthouse confirms 99–100 performance on the routes checked so far
@@ -138,10 +142,11 @@ Folded in from a fresh best-practices checklist. Ordered by what's missing vs. w
 - [x] Errors tied to inputs with `aria-describedby` (native HTML5 `required` validation, no custom JS)
 - [x] Success message moves focus — solved without any JavaScript: the form redirects to a real `/contact/thank-you` page, so a full page navigation happens, which is a genuinely valid way to satisfy this rather than a JS-driven inline message
 - [x] Test with JavaScript disabled — works by construction, since this is a plain HTML form POST, not a fetch/AJAX flow
-- [ ] **You need to get a real Web3Forms access key** (free, instant, at web3forms.com) and drop it into `contact.astro` — currently a `TODO-REPLACE-WITH-REAL-WEB3FORMS-KEY` placeholder
-- [ ] The `redirect` field is a placeholder domain (`TODO-REAL-DOMAIN`) — needs the real launch domain from Phase 7, since Web3Forms requires an absolute URL there
+- [x] Real Web3Forms access key wired into `contact.astro`
+- [x] Real domain wired in everywhere: `astro.config.mjs`'s `site` field (fixes the sitemap warning that's been showing all session), the Web3Forms `redirect`, and `robots.txt`'s sitemap reference
+- [ ] Still needs a real end-to-end test: submit the form from your phone and confirm the email arrives
 
-**Done when:** the real access key and domain are in place, and you submit it from your phone and the email arrives.
+**Done when:** you submit it from your phone and the email arrives.
 
 ---
 
@@ -172,6 +177,22 @@ Folded in from a fresh best-practices checklist. Ordered by what's missing vs. w
 - [ ] README explaining stack choices
 
 **Done when:** it's live, the old URL forwards, and one trusted person has done a cold read.
+
+---
+
+## Phase 5c — "How this site was built" *(new)*
+
+A distinctive component idea, not from the original checklist: instead of just claiming "AI-augmented
+development" as a resume bullet, show the actual artifact of that process.
+
+- [x] `/process` page — curated, real highlights from this build: the brass/bone contrast bug caught against
+  actual WCAG math, the Chromium SVG-in-grid bug found and reproduced before fixing, the employee-PII
+  screenshot caught and excluded before publishing, the Voximetry/Explore Torch merge based on real evidence,
+  and the schema-enforced problem/role/process/outcome structure
+- [x] Links to the real public `ROADMAP.md` on GitHub for anyone who wants to verify it's not just marketing copy
+- [x] Linked from the footer's existing "Built with..." line ("See how →")
+
+**Done when:** ✅ done — built and verified in this session.
 
 ---
 

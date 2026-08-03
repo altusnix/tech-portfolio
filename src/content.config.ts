@@ -22,6 +22,10 @@ const projects = defineCollection({
     outcome: z.string(),                    // one sentence, what changed
     cover: image(),
     coverAlt: z.string(),                   // required — no decorative covers
+    gallery: z.array(z.object({
+      image: image(),
+      alt: z.string(),
+    })).default([]),                        // additional in-context screenshots, beyond the cover
     featured: z.boolean().default(false),
     order: z.number(),
   }),

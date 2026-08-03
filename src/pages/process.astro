@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const moments = [
+  {
+    title: 'The design brief had a contrast bug',
+    body: 'The original palette called for brass text on the light background — checked it against real WCAG contrast math instead of trusting the brief, and it failed even the large-text minimum, not just body text. Added a second, darker brass variant for light surfaces instead of shipping something that looked right and wasn’t.',
+  },
+  {
+    title: 'Found a real browser bug, not just a CSS mistake',
+    body: 'Client logos were silently invisible in the "Trusted by" section. Traced it to a genuine Chromium quirk: SVGs loaded via <code>&lt;img&gt;</code> with only a <code>viewBox</code> can collapse to zero size inside CSS Grid with centered items. Reproduced it in isolation before touching the real fix, so the fix was based on evidence, not a guess.',
+  },
+  {
+    title: 'Caught PII before it shipped, not after',
+    body: 'A batch of old project screenshots included one of a real internal employee directory — actual coworkers’ names and personal cell numbers. It would have been easy to use as-is; instead every image got a visual check before being attributed to a project, and that one was pulled and flagged for redaction rather than published.',
+  },
+  {
+    title: 'Two "projects" turned out to be one',
+    body: 'Two case studies were listed as separate clients. A closer look at the actual screenshots — a navigation menu literally reading "Lobby / Torch Lab / Discovery Center" inside one branded environment — proved they were the same platform. Merged them rather than leaving inaccurate history on the record.',
+  },
+  {
+    title: 'Every project follows the same real structure',
+    body: 'Problem, role, process, outcome — enforced by a shared content schema, not just a writing convention. Where the real number or the real brief wasn’t available, it says so directly instead of filling the gap with something that sounds plausible.',
+  },
+];
+---
+
+<Layout
+  title="How this site was built — Robyn Stokes"
+  description="A transparent look at the actual process behind this portfolio — structured planning, real bugs caught and fixed, and honest gaps left visible rather than papered over."
+>
+  <section class="process">
+    <header class="process__header">
+      <h1 class="font-display text-2xl text-plum">How this site was built</h1>
+      <p class="text-lg">
+        I built this site collaboratively with Claude Code, working from a structured roadmap rather than
+        ad-hoc prompting — phases, done-when criteria, and a running log of what actually happened, not
+        just what was planned. A few moments from that process, below.
+      </p>
+    </header>
+
+    <ul class="process__list">
+      {moments.map((m) => (
+        <li class="process__item">
+          <h2 class="font-display text-lg text-plum">{m.title}</h2>
+          <p class="text-base" set:html={m.body} />
+        </li>
+      ))}
+    </ul>
+
+    <div class="process__footer">
+      <p class="text-base">
+        The real roadmap this was built from is public — <a href="https://github.com/altusnix/tech-portfolio/blob/main/ROADMAP.md" target="_blank" rel="noopener noreferrer">read it on GitHub<span class="sr-only"> (opens in a new tab)</span></a>.
+      </p>
+      <p class="text-sm process__stack">
+        Built with Astro 7, React islands (only where real interactivity is needed — a lightbox, a mobile menu),
+        and Tailwind v4. Self-hosted fonts, no third-party trackers beyond analytics.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .process {
+    max-width: 44rem;
+    margin-inline: auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .process__header {
+    padding-block: 1rem 2rem;
+    border-bottom: 1px solid var(--color-plum);
+  }
+
+  .process__header p {
+    margin-top: 1rem;
+  }
+
+  .process__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .process__item {
+    border-left: 3px solid var(--color-brass-dark);
+    padding-left: 1.25rem;
+  }
+
+  .process__item h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .process__item :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: color-mix(in srgb, var(--color-plum) 8%, transparent);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+
+  .process__footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-plum);
+  }
+
+  .process__footer a {
+    color: var(--color-plum);
+  }
+
+  .process__stack {
+    margin-top: 0.75rem;
+    opacity: 0.75;
+  }
+</style>

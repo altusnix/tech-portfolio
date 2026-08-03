@@ -19,11 +19,14 @@ stack:
   - Adobe XD
   - Photoshop
   - Illustrator
-problem: "TODO: inferred, not sourced — TAE Lifesciences needed an engaging way to present its work at trade shows/conferences rather than a static display. Confirm or replace with the real brief."
-scope: Built an immersive, 360-degree interactive brand experience for TAE Lifesciences, collaborating with 3D artists, a designer, and a backend developer to deliver an experiential-marketing environment.
+problem: "TODO: partially inferred — screenshots confirm this walks visitors through TAE's Alphabeam particle accelerator system (ion source, pre-accelerator, tandem accelerator) in an interactive 3D room, suggesting TAE needed an accessible way to explain complex accelerator equipment to conference/trade-show visitors. Confirm or refine."
+scope: Built an immersive, 360-degree interactive walkthrough of TAE's Alphabeam System — including the ion source and pre-accelerator components — collaborating with 3D artists, a designer, and a backend developer to deliver an experiential-marketing environment.
 outcome: "TODO: measurable outcome — resume doesn't call out a specific metric for this one"
 cover: ../../assets/projects/tae1.png
 coverAlt: TAE Lifesciences 360 experience interface
+gallery:
+  - image: ../../assets/projects/TAE2.png
+    alt: Interactive 3D walkthrough of the Alphabeam System Ion Source and Pre-Accelerator, with technical detail panel
 featured: false
 order: 8
 ---

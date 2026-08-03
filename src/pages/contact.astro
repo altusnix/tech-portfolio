@@ -9,17 +9,14 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="contact__grid">
       <!--
-        TODO: replace access_key with a real Web3Forms key — get one free at
-        https://web3forms.com (no account/card needed, key arrives by email).
         Works with zero JavaScript: this is a plain form POST that redirects
         to /contact/thank-you on success, which is what gives us a real
         focus-moving success state without writing any client-side code.
       -->
       <form class="contact__form" method="POST" action="https://api.web3forms.com/submit" aria-label="Contact form">
-        <input type="hidden" name="access_key" value="TODO-REPLACE-WITH-REAL-WEB3FORMS-KEY" />
+        <input type="hidden" name="access_key" value="5d9aab6c-dbcf-4303-9827-f257f10780df" />
         <input type="hidden" name="subject" value="New message from altusnixportfolio" />
-        <!-- TODO: swap for the real launch domain once Phase 7 picks one (Web3Forms needs an absolute URL here) -->
-        <input type="hidden" name="redirect" value="https://TODO-REAL-DOMAIN/contact/thank-you" />
+        <input type="hidden" name="redirect" value="https://tech-portfolio.altusnix.workers.dev/contact/thank-you" />
         <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" />
 
         <div class="contact__field">

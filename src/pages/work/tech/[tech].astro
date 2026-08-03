@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import { getAllTechStacks, sortProjectsNewestFirst } from '../../../lib/projects';
+
+export async function getStaticPaths() {
+  const allProjects = await getCollection('projects');
+  const techs = getAllTechStacks(allProjects);
+  return techs.map(({ slug, name }) => ({
+    params: { tech: slug },
+    props: { techName: name },
+  }));
+}
+
+const { techName } = Astro.props;
+const allProjects = await getCollection('projects');
+const filtered = sortProjectsNewestFirst(allProjects.filter((p) => p.data.stack.includes(techName)));
+---
+
+<Layout title={`${techName} projects — Robyn Stokes`} description={`Projects built with ${techName}.`}>
+  <section class="work-index">
+    <a href="/work" class="tech-back text-sm">&larr; All work</a>
+    <header class="work-index__header">
+      <h1 class="font-display text-2xl text-plum">Projects using {techName}</h1>
+      <p class="text-lg">
+        {filtered.length} project{filtered.length === 1 ? '' : 's'} built with {techName}.
+      </p>
+    </header>
+
+    <div class="work-index__grid">
+      {filtered.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .work-index {
+    max-width: 64rem;
+    margin-inline: auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .tech-back {
+    display: inline-block;
+    color: var(--color-plum);
+    text-decoration: none;
+  }
+
+  .tech-back:hover {
+    text-decoration: underline;
+  }
+
+  .work-index__header {
+    padding-block: 1rem 2rem;
+    border-bottom: 1px solid var(--color-plum);
+    max-width: 40rem;
+  }
+
+  .work-index__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 2.5rem 2rem;
+    margin-top: 2.5rem;
+  }
+</style>

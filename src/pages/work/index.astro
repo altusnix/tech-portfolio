@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import ProjectEntry from '../../components/ProjectEntry.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 import { sortProjectsNewestFirst } from '../../lib/projects';
 
 const allProjects = await getCollection('projects');
@@ -18,9 +18,9 @@ const projects = sortProjectsNewestFirst(allProjects);
       <p class="text-lg">Government platforms, enterprise systems, and immersive experiences — built with teams ranging from solo to eleven.</p>
     </header>
 
-    <div class="work-index__list">
+    <div class="work-index__grid">
       {projects.map((project) => (
-        <ProjectEntry project={project} />
+        <ProjectCard project={project} />
       ))}
     </div>
   </section>
@@ -28,7 +28,7 @@ const projects = sortProjectsNewestFirst(allProjects);
 
 <style>
   .work-index {
-    max-width: 60rem;
+    max-width: 64rem;
     margin-inline: auto;
     padding: 2rem 1.5rem 4rem;
   }
@@ -36,13 +36,13 @@ const projects = sortProjectsNewestFirst(allProjects);
   .work-index__header {
     padding-block: 1rem 2rem;
     border-bottom: 1px solid var(--color-plum);
+    max-width: 40rem;
   }
 
-  .work-index__list > :global(.project-entry) {
-    border-bottom: 1px solid color-mix(in srgb, var(--color-plum) 20%, transparent);
-  }
-
-  .work-index__list > :global(.project-entry:last-child) {
-    border-bottom: none;
+  .work-index__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 2.5rem 2rem;
+    margin-top: 2.5rem;
   }
 </style>

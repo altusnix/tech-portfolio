@@ -1,0 +1,21 @@
+---
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Lightbox from './Lightbox.tsx';
+
+interface Props {
+  images: { image: ImageMetadata; alt: string }[];
+}
+
+const { images } = Astro.props;
+
+const processed = await Promise.all(
+  images.map(async ({ image, alt }) => {
+    const thumb = await getImage({ src: image, width: 500, format: 'webp' });
+    const full = await getImage({ src: image, width: 1600, format: 'webp' });
+    return { thumbSrc: thumb.src, fullSrc: full.src, alt };
+  })
+);
+---
+
+{processed.length > 0 && <Lightbox client:visible images={processed} />}

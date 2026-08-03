@@ -15,3 +15,21 @@ export function sortProjectsNewestFirst(projects: CollectionEntry<'projects'>[])
     return a.data.order - b.data.order;
   });
 }
+
+export function slugifyTech(tech: string): string {
+  return tech
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+export function getAllTechStacks(projects: CollectionEntry<'projects'>[]): { name: string; slug: string }[] {
+  const bySlug = new Map<string, string>();
+  for (const project of projects) {
+    for (const tech of project.data.stack) {
+      const slug = slugifyTech(tech);
+      if (!bySlug.has(slug)) bySlug.set(slug, tech);
+    }
+  }
+  return [...bySlug.entries()].map(([slug, name]) => ({ slug, name }));
+}
