@@ -28,6 +28,9 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260801.1",
     "@resvg/resvg-js": "^2.6.2",
+    "chrome-launcher": "^1.2.1",
+    "lighthouse": "^13.4.1",
+    "playwright": "^1.62.1",
     "satori": "^0.29.0"
   }
 }

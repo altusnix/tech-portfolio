@@ -2,10 +2,11 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
-import { sortProjectsNewestFirst } from '../../lib/projects';
+import { getAllTechStacks, slugifyTech, sortProjectsNewestFirst } from '../../lib/projects';
 
 const allProjects = await getCollection('projects');
 const projects = sortProjectsNewestFirst(allProjects);
+const techs = getAllTechStacks(allProjects).sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <Layout
@@ -18,13 +19,57 @@ const projects = sortProjectsNewestFirst(allProjects);
       <p class="text-lg">Government platforms, enterprise systems, and immersive experiences — built with teams ranging from solo to eleven.</p>
     </header>
 
+    <div class="work-index__filters" role="group" aria-label="Filter by technology">
+      <button type="button" class="filter-pill" data-filter="all" aria-pressed="true">All</button>
+      {techs.map((t) => (
+        <button type="button" class="filter-pill" data-filter={t.slug} aria-pressed="false">{t.name}</button>
+      ))}
+    </div>
+    <p class="work-index__count text-sm" aria-live="polite">
+      {projects.length} project{projects.length === 1 ? '' : 's'}
+    </p>
+
     <div class="work-index__grid">
       {projects.map((project) => (
-        <ProjectCard project={project} headingLevel="h2" />
+        <div class="work-card" data-tech={JSON.stringify(project.data.stack.map(slugifyTech))}>
+          <ProjectCard project={project} headingLevel="h2" />
+        </div>
       ))}
     </div>
   </section>
 </Layout>
+
+<script>
+  const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
+  const cards = document.querySelectorAll<HTMLElement>('.work-card');
+  const countEl = document.querySelector('.work-index__count');
+
+  function updateCount(n: number) {
+    if (countEl) countEl.textContent = `${n} project${n === 1 ? '' : 's'}`;
+  }
+
+  function applyFilter(filter: string) {
+    let visible = 0;
+    cards.forEach((card) => {
+      const cardTechs: string[] = JSON.parse(card.dataset.tech || '[]');
+      const show = filter === 'all' || cardTechs.includes(filter);
+      card.hidden = !show;
+      if (show) visible++;
+    });
+    updateCount(visible);
+  }
+
+  pills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const filter = pill.dataset.filter as string;
+      const alreadyActive = pill.getAttribute('aria-pressed') === 'true';
+      const nextFilter = alreadyActive && filter !== 'all' ? 'all' : filter;
+
+      pills.forEach((p) => p.setAttribute('aria-pressed', String(p.dataset.filter === nextFilter)));
+      applyFilter(nextFilter);
+    });
+  });
+</script>
 
 <style>
   .work-index {
@@ -39,10 +84,49 @@ const projects = sortProjectsNewestFirst(allProjects);
     max-width: 40rem;
   }
 
+  .work-index__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+
+  .filter-pill {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    border: 1px solid var(--color-plum);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+    background: transparent;
+    color: var(--color-plum);
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .filter-pill:hover,
+  .filter-pill:focus-visible {
+    background: color-mix(in srgb, var(--color-plum) 10%, transparent);
+  }
+
+  .filter-pill[aria-pressed='true'] {
+    background: var(--color-plum);
+    color: var(--color-bone);
+  }
+
+  .work-index__count {
+    margin-top: 0.85rem;
+    color: var(--color-plum);
+    opacity: 0.75;
+  }
+
   .work-index__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: 2.5rem 2rem;
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .work-card[hidden] {
+    display: none;
   }
 </style>

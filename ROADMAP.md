@@ -167,25 +167,28 @@ accessibility). What's left is judgment, not mechanics:
 
 ---
 
-## Phase I — Work gallery: in-place tech-stack filtering
+## Phase I — Work gallery: in-place tech-stack filtering ✅ done
 
 Case study pages already have clickable tech-stack pills (e.g. "React") that link out to a dedicated
-`/work/tech/react` page showing every project using that technology. Add the same pill-filtering directly on
-`/work` itself, so visitors can narrow the grid in place instead of leaving the page.
+`/work/tech/react` page showing every project using that technology. Added the same pill-filtering directly
+on `/work` itself, so visitors can narrow the grid in place instead of leaving the page.
 
-- [ ] Add a filter bar of tech-stack pills at the top of `/work`, sourced from the same `getAllTechStacks()`
+- [x] Filter bar of tech-stack pills added at the top of `/work`, sourced from the same `getAllTechStacks()`
   helper the `/work/tech/[tech]` pages already use — no new data needed
-- [ ] Clicking a pill filters the grid to projects using that tech, client-side (no page reload); clicking
-  again clears the filter
-- [ ] Decide whether the standalone `/work/tech/[tech]` pages stay (useful for direct/shared links and SEO)
-  or get replaced entirely by the in-place filter — recommend keeping both, since the dedicated pages are
-  crawlable and linkable in a way client-side filtering isn't
-- [ ] Keep it keyboard- and screen-reader-accessible — active/inactive filter state needs to be announced,
-  not just shown with color
-- [ ] Art gallery (`/art`) stays as-is — no filtering needed there, per your call
+- [x] Clicking a pill filters the grid client-side, no page reload; clicking the active pill again (or "All")
+  clears back to the full grid
+- [x] Standalone `/work/tech/[tech]` pages kept alongside the in-place filter — still crawlable/linkable in
+  a way client-side filtering isn't
+- [x] Keyboard- and screen-reader-accessible: real `<button>` elements with `aria-pressed` state (not
+  color-only), a `role="group"` filter bar, and an `aria-live="polite"` count that updates on every filter
+  change. Verified with a scripted Playwright pass — both mouse clicks and keyboard-only (Tab + Enter)
+  correctly filter to the right subset (e.g. the React pill isolates exactly the 2 projects using React).
+- [x] Art gallery (`/art`) left as-is, no filtering added there, per your call
+- [x] Re-ran Lighthouse on the updated `/work` page — 100/100/100 accessibility/best-practices/SEO, no
+  regression on performance
 
 **Done when:** you can filter `/work` by clicking a tech pill without leaving the page, and it's fully
-usable by keyboard and screen reader.
+usable by keyboard and screen reader. ✅
 
 ---
 
