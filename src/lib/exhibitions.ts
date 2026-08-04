@@ -9,6 +9,13 @@ export interface Exhibition {
 
 export const exhibitions: Exhibition[] = [
   {
+    title: 'Rebirth',
+    venue: 'Grosse Pointe War Memorial',
+    city: 'Grosse Pointe, MI',
+    date: 'February 2026',
+    image: '14.jpg',
+  },
+  {
     title: 'Duality',
     venue: 'Art.Fait at The Indra Gallery',
     city: 'London',

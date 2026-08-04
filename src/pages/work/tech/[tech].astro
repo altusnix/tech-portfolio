@@ -47,8 +47,10 @@ const filtered = sortProjectsNewestFirst(allProjects.filter((p) => p.data.stack.
     text-decoration: none;
   }
 
-  .tech-back:hover {
+  .tech-back:hover,
+  .tech-back:focus-visible {
     text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
 
   .work-index__header {

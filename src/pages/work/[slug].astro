@@ -38,7 +38,9 @@ const { title, client, scope } = project.data;
     text-decoration: none;
   }
 
-  .case-study__back:hover {
+  .case-study__back:hover,
+  .case-study__back:focus-visible {
     text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
 </style>

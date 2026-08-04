@@ -116,6 +116,12 @@ import Layout from '../layouts/Layout.astro';
     color: var(--color-plum);
   }
 
+  .contact__info a:hover,
+  .contact__info a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
   @media (max-width: 640px) {
     .contact__grid {
       grid-template-columns: 1fr;
