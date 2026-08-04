@@ -11,25 +11,29 @@ things worst if skipped and what blocks what else.
 
 ---
 
-## Phase A — Stop the bleeding: remove visible placeholder text 🔴
+## Phase A — Stop the bleeding: remove visible placeholder text 🔴 (mostly done)
 
-**Do this before anything else.** Verified live, right now:
-- `/art` shows the literal text **"TODO: confirm city"** five times (Philadelphia/TriState, Tangent Gallery,
-  Boomer Gallery, BWAC, and the 2020 Nasty Women show) — this pulls into the homepage's art teaser too
-- Homepage's client wall has one logo with alt text **"TODO: unidentified client"**
-- `/work/seagen` shows a placeholder graphic that visibly reads **"Cover image pending"**
+**Do this before anything else.** Verified live at the start of this phase:
+- `/art` showed the literal text **"TODO: confirm city"** five times
+- Homepage's client wall had one logo with alt text **"TODO: unidentified client"**
+- **8 of 9 case study pages** — not just Seagen — were rendering literal `TODO: measurable outcome — ...`
+  and `TODO: inferred, not sourced — ...` text directly on the page (this was worse than first scoped;
+  caught by rebuilding and grepping the actual output rather than trusting the file list)
+- `/work/seagen` and `/work/client-inventory-portal` show a placeholder graphic that visibly reads
+  **"Cover image pending"**
 
-None of this is a code comment — it's real text a visitor sees. A recruiter opening the site today would see it.
+- [x] Exhibition cities — all 5 resolved with real answers (Philadelphia, PA / Detroit, MI / London /
+  Brooklyn, NY / Chicago, IL)
+- [x] Unidentified client logo — identified as Voximetry, relabeled
+- [x] The 8 case studies with visible `TODO:` outcome/problem text — schema changed so `problem`/`outcome`
+  are optional and the page cleanly omits the line instead of printing a placeholder; verified a full site
+  rebuild returns zero "TODO" matches
+- [ ] Seagen cover: still needs a real screenshot — waiting on you
+- [ ] Client Inventory Portal cover: same — waiting on you
 
-- [ ] Exhibition cities: either get the real ones from you, or rewrite those five entries to omit the city
-  cleanly (venue name alone reads fine; "TODO: confirm city" does not)
-- [ ] The unidentified client logo: confirm who it is, or drop it from the wall entirely — a wrong guess is
-  worse than one fewer logo
-- [ ] Seagen cover: needs a real screenshot, or the entry should explain there's no visual (a text-only card
-  reads as intentional; "pending" reads as unfinished)
-- [ ] Client Inventory Portal also has a placeholder cover — same treatment
-
-**Done when:** `curl`-ing every route for the string "TODO" returns nothing.
+**Done when:** `curl`-ing every route for the string "TODO" returns nothing. ✅ confirmed via full local
+build grep — not yet deployed, committed locally only.
+**Still blocking:** the two real cover screenshots.
 
 ---
 
@@ -37,6 +41,10 @@ None of this is a code comment — it's real text a visitor sees. A recruiter op
 
 Everything else in "content cleanup" that isn't visibly broken but isn't finished either.
 
+- [x] Read through every page of copy for typos, doubled words, and common misspellings — none found. Did
+  catch one real issue along the way: GOARMY's problem and outcome fields both ended with the identical
+  "under strict government budget and compliance constraints" clause, reading like a copy-paste when
+  rendered back-to-back on the page for the featured, lead project. Trimmed the repeat.
 - [ ] **7 of 9 projects still need a real outcome metric** (Rentals, Phonebook, Coke/Sonic, Abbvie, TAE, Seagen,
   Client Portal) — this is the single biggest lever left for "represents my abilities well." A case study
   with problem/role/process but no outcome reads as unfinished, not as a project with no results.
@@ -111,12 +119,13 @@ sweep now that a lot has changed since (Google Analytics added, resume gate, lig
 
 Sitemap and `robots.txt` already work (fixed earlier this session). What's still missing:
 
-- [ ] **Open Graph tags** — `Layout.astro` has a plain `<meta name="description">` but no `og:title`,
-  `og:description`, `og:image`, or `twitter:card`. Right now, pasting this URL into LinkedIn or Slack shows
-  nothing useful. This matters a lot for a job search specifically, since the link will get shared.
-- [ ] **OG image** — a real 1200×630 social preview image; there was an abandoned draft for this earlier in the
-  session, worth finishing now that the hero copy is finalized
-- [ ] Test the result by actually pasting the URL into LinkedIn's post composer
+- [x] **Open Graph tags** — added the full set (`og:type`, `og:title`, `og:description`, `og:image`, `og:url`,
+  `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`) plus canonical URLs, all
+  per-page (case studies use their own title/scope, not a generic default)
+- [x] **OG image** — real 1200×630 image generated with satori + resvg using the site's actual fonts
+  (Instrument Serif, Figtree, DM Mono) and color tokens (plum/bone/brass) — not a generic placeholder.
+  Script committed at `scripts/generate-og-image.mjs`, regenerate if the hero copy changes.
+- [ ] Test the result by actually pasting the URL into LinkedIn's post composer — needs the live deploy first
 - [ ] Consider JSON-LD structured data (Person schema) — helps Google understand who you are for anyone
   searching your name directly, which recruiters do
 - [ ] Per-page `<title>` tags — spot check they're all unique and descriptive (mostly already true, worth confirming)
