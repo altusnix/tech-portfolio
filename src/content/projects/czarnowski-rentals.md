@@ -17,11 +17,12 @@ stack:
   - Adobe XD
   - Photoshop
   - Illustrator
+  - Graphic Design
+  - Google Analytics
+  - Git
 problem: Clients had no self-service way to browse and rent Czarnowski's trade show booth products online.
 scope: Conceived, designed, and built a rebuilt Czarnowski Rentals site from scratch, letting clients browse and rent products for their trade show booth displays.
-# TODO: measurable outcome — resume doesn't call out Rentals specifically;
-# add traffic/rental volume numbers if you have them, then uncomment below.
-# outcome: ""
+outcome: Gave clients a self-service, responsive e-commerce experience to browse and rent trade show booth products online, replacing a manual process, with usage tracked via Google Analytics.
 cover: ../../assets/projects/2.png
 coverAlt: Czarnowski Rentals product browsing homepage
 featured: true

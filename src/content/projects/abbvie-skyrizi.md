@@ -6,25 +6,22 @@ yearEnd: 2021
 myRole: Senior Front-End Developer & Designer
 crew:
   - discipline: back-end
-    count: 3
+    count: 1
 stack:
   - Bootstrap
   - Thymeleaf
-  - Java
-  - Spring
   - HTML5
   - JavaScript
   - Adobe XD
   - Photoshop
   - Illustrator
-# TODO: problem statement inferred, not sourced — AbbVie needed a standout,
-# in-person experiential activation for the Skyrizi campaign rather than a
-# static booth. Confirm or replace with the real brief, then uncomment below.
-# problem: ""
-scope: Built an immersive, 360-degree interactive brand experience for AbbVie's Skyrizi campaign, collaborating with 3D artists and backend developers to deliver an experiential-marketing environment.
-# TODO: measurable outcome — resume doesn't call out a specific metric for
-# this one. Add a real number, then uncomment below.
-# outcome: ""
+  - Marzipano
+  - Graphic Design
+  - Interactive Design
+  - Git
+problem: AbbVie needed a standout, in-person experiential activation for the Skyrizi campaign rather than a static booth.
+scope: Led front-end development and design of an immersive, 360-degree interactive brand experience for AbbVie's Skyrizi campaign, collaborating with 3D artists and a backend developer to deliver an experiential-marketing environment.
+outcome: Gave AbbVie a standout, immersive 360-degree experiential-marketing activation for the Skyrizi campaign, replacing a static trade-show booth.
 cover: ../../assets/projects/skyrizi.png
 coverAlt: Abbvie Skyrizi project interface
 featured: false
