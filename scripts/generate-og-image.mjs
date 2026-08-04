@@ -63,7 +63,7 @@ const markup = {
             lineHeight: 1,
             marginBottom: '32px',
           },
-          children: 'Robyn Stokes',
+          children: 'Robyn',
         },
       },
       {
@@ -92,7 +92,7 @@ const markup = {
             opacity: 0.75,
             marginTop: '20px',
           },
-          children: 'Technology Lead — 20+ years leading cross-functional teams',
+          children: 'Technology Lead, 20+ years leading cross-functional teams',
         },
       },
     ],

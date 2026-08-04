@@ -18,7 +18,7 @@ const allProjects = await getCollection('projects');
 const filtered = sortProjectsNewestFirst(allProjects.filter((p) => p.data.stack.includes(techName)));
 ---
 
-<Layout title={`${techName} projects | Robyn Stokes`} description={`Projects built with ${techName}.`}>
+<Layout title={`${techName} projects | Robyn`} description={`Projects built with ${techName}.`}>
   <section class="work-index">
     <a href="/work" class="tech-back text-sm">&larr; All work</a>
     <header class="work-index__header">

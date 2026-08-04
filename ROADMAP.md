@@ -130,7 +130,7 @@ Sitemap and `robots.txt` already work (fixed earlier this session). What's still
   searching your name directly, which recruiters do
 - [ ] Per-page `<title>` tags — spot check they're all unique and descriptive (mostly already true, worth confirming)
 
-**Done when:** sharing the link anywhere shows a real preview, and the site is legible to search engines as "Robyn Stokes, Technology Lead."
+**Done when:** sharing the link anywhere shows a real preview, and the site is legible to search engines as "Robyn, Technology Lead."
 
 ---
 
