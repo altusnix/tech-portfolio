@@ -26,7 +26,7 @@ stack:
 # equipment to conference/trade-show visitors. Confirm or refine, then
 # uncomment below.
 # problem: ""
-scope: Built an immersive, 360-degree interactive walkthrough of TAE's Alphabeam System — including the ion source and pre-accelerator components — collaborating with 3D artists, a designer, and a backend developer to deliver an experiential-marketing environment.
+scope: Built an immersive, 360-degree interactive walkthrough of TAE's Alphabeam System, including the ion source and pre-accelerator components, collaborating with 3D artists, a designer, and a backend developer to deliver an experiential-marketing environment.
 # TODO: measurable outcome — resume doesn't call out a specific metric for
 # this one. Add a real number, then uncomment below.
 # outcome: ""

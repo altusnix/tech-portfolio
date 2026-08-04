@@ -8,7 +8,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Robyn Stokes — Technology Leader & Visual Artist.' } = Astro.props;
+const { title, description = 'Robyn Stokes, Technology Leader & Visual Artist.' } = Astro.props;
 const ogImage = new URL('/og-image.png', Astro.site ?? Astro.url.origin);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 ---

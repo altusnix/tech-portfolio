@@ -28,7 +28,7 @@ scope: Built an immersive, 360-degree interactive brand experience for Seagen, c
 # this one. Add a real number, then uncomment below.
 # outcome: ""
 cover: ../../assets/projects/placeholder-cover.svg
-coverAlt: "PLACEHOLDER — not a real screenshot. No cover image exists on the old site for Seagen; needs a real one before launch."
+coverAlt: "PLACEHOLDER: not a real screenshot. No cover image exists on the old site for Seagen; needs a real one before launch."
 featured: false
 order: 9
 ---

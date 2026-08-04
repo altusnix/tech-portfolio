@@ -32,7 +32,7 @@ const skillGroups = [
 ---
 
 <Layout
-  title="About — Robyn Stokes"
+  title="About | Robyn Stokes"
   description="Robyn Stokes: 20+ years spanning enterprise technology leadership and international visual arts."
 >
   <section class="about">
@@ -42,37 +42,52 @@ const skillGroups = [
       <h1 class="font-display text-2xl text-plum">About</h1>
 
       <p class="text-base">
-        20+ years spanning enterprise technology leadership and international visual arts &mdash; two disciplines that,
-        in practice, run on the same instinct for structure and problem-solving.
+        Over twenty years spanning agency, enterprise, and federal government work, moving between technology
+        lead, product owner, and project manager depending on what the engagement needed.
       </p>
 
       <p class="text-base">
-        Most recently Technology Lead at Critical Mass in Chicago, promoted within 14 months of joining and holding
-        active T3 government security clearance throughout. Grew and mentored a cross-functional team of 6 to 10
-        developers delivering goarmy.com, a high-traffic recruitment platform serving millions of monthly visitors,
-        while establishing the governance frameworks and release processes the team ran on. Also drove adoption of
-        agentic AI development workflows &mdash; Claude Code, GitHub Copilot &mdash; into the delivery pipeline.
+        I've taken teams of six to ten developers through complete delivery cycles: discovery and scoping,
+        backlog and sprint planning, stakeholder alignment, and release. Most recently that meant Technology Lead at
+        Critical Mass in Chicago, promoted within 14 months of joining, leading the team behind goarmy.com, a
+        high-traffic recruitment platform serving millions of monthly visitors, and establishing the governance and
+        release processes it ran on.
       </p>
 
       <p class="text-base">
-        Founded the Women in Tech group at Critical Mass and served as Affinity Group Women's Lead for two years,
-        building mentorship and career-development programming for women in technical roles &mdash; work recognized
-        with a 2024 Women in Global Tech Community Award nomination.
+        Every build ships WCAG-compliant, and I've recently brought agentic AI tools (Claude Code, GitHub
+        Copilot) into the delivery pipeline without slowing teams down. I carry an active T3 government
+        security clearance.
       </p>
 
       <p class="text-base">
-        BA in Interactive Multimedia from Columbia College Chicago, graduated with honors, with minors in Photography
-        and Journalism. Has spoken at Columbia College Chicago, DePaul University, and Marriott, and been featured in
-        Chicago Magazine, the Chicago Sun-Times, and The Reader.
+        Alongside the technical work, I've exhibited as a fine artist internationally since 2005. That studio
+        practice (thinking in composition, hierarchy, and how something actually feels to use) carries
+        directly into how I approach interfaces.
+      </p>
+
+      <p class="text-base about__cta">
+        Looking for a technology leadership role that values both front-end craft and real delivery discipline.
+        <a href="/contact">Let's talk</a>.
+      </p>
+
+      <p class="text-base">
+        Founded the Women in Tech group at Critical Mass and served as Affinity Group Women's Lead for two years:
+        mentorship and career-development programming for women in technical roles, recognized with a 2024
+        Women in Global Tech Community Award nomination.
+      </p>
+
+      <p class="text-base">
+        BA in Interactive Multimedia from Columbia College Chicago (honors; minors in Photography and Journalism).
+        Spoken at Columbia College Chicago, DePaul University, and Marriott; featured in Chicago Magazine, the
+        Chicago Sun-Times, and The Reader.
       </p>
 
       <h2 class="font-display text-lg text-plum">Beyond the code</h2>
       <p class="text-base">
-        From 2010 to 2018, served as Director of the Burton Chill program at Raging Buffalo &mdash; a Burton
-        Snowboards initiative giving children without the financial means to experience snowboarding a way onto the
-        mountain. Still snowboards and rides downhill MTB trails today; independently exhibiting as a fine artist in
-        mixed media and flameworked glass since 2005, with 2025&ndash;2026 shows in New York, London, Detroit,
-        Philadelphia, and Michigan.
+        Directed the Burton Chill program at Raging Buffalo (2010&ndash;2018), a Burton Snowboards initiative
+        putting kids without the means onto the mountain; still snowboards and rides downhill MTB today. Exhibiting
+        as a fine artist in mixed media and flameworked glass since 2005. <a href="/art">Full exhibition history &rarr;</a>
       </p>
     </div>
   </section>
@@ -115,6 +130,17 @@ const skillGroups = [
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .about__body a {
+    color: var(--color-plum);
+  }
+
+  .about__cta {
+    font-weight: 600;
+    color: var(--color-plum);
+    border-left: 3px solid var(--color-brass-dark);
+    padding-left: 1rem;
   }
 
   @media (max-width: 640px) {

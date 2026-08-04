@@ -38,7 +38,7 @@ stack:
 # and resources at conferences, rather than static slides or PDFs. Confirm
 # or replace with the real brief, then uncomment below.
 # problem: ""
-scope: Built an immersive 360-degree virtual conference experience for Voximetry — spanning a lobby, an interactive "Torch Lab" data-exploration room, and a Discovery Center — collaborating with 3D artists, designers, and backend developers to deliver dosimetry visualizations, economics resources, and research content.
+scope: Built an immersive 360-degree virtual conference experience for Voximetry, spanning a lobby, an interactive "Torch Lab" data-exploration room, and a Discovery Center, collaborating with 3D artists, designers, and backend developers to deliver dosimetry visualizations, economics resources, and research content.
 # TODO: measurable outcome — no metric confirmed yet. Add a real number,
 # then uncomment below.
 # outcome: ""
@@ -46,7 +46,7 @@ cover: ../../assets/projects/vox0.png
 coverAlt: Voximetry 360 virtual conference lobby
 gallery:
   - image: ../../assets/projects/vox1.png
-    alt: Voximetry lobby navigation — Let's Talk Studio, Dosimetry Economics, Research & Insight
+    alt: "Voximetry lobby navigation: Let's Talk Studio, Dosimetry Economics, Research & Insight"
   - image: ../../assets/projects/vox2.png
     alt: Entrance to the Torch Lab / Explore Torch room inside Voximetry
   - image: ../../assets/projects/vox3.png

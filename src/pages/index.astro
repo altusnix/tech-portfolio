@@ -19,8 +19,8 @@ const artTeaser = exhibitions.slice(0, 3);
 ---
 
 <Layout
-  title="Robyn Stokes — Technology Leader & Visual Artist"
-  description="20+ years leading cross-functional teams through large-scale digital transformations for Fortune 500 clients — also an exhibiting visual artist."
+  title="Robyn Stokes | Technology Leader & Visual Artist"
+  description="20+ years leading cross-functional teams through large-scale digital transformations for Fortune 500 clients, and an exhibiting visual artist."
 >
   <section class="hero">
     <h1 class="font-display text-plum hero__title">From government platforms<br />to gallery walls.</h1>
@@ -36,27 +36,10 @@ const artTeaser = exhibitions.slice(0, 3);
   </section>
 
   <section class="statement">
-    <p class="text-sm font-mono statement__eyebrow">
-      Technology Leadership &times; Creative Practice &mdash; Front-End Engineering, Delivery, Applied AI
-    </p>
-    <p class="text-lg statement__lead">
-      I lead the teams that build and ship large-scale platforms &mdash; and I still do the front-end work myself.
-    </p>
-    <p class="text-base">
-      Over twenty years spanning agency, enterprise, and federal government work, moving between technology lead,
-      product owner, and project manager depending on what the engagement needed. I've taken teams of six to ten
-      developers through complete delivery cycles: discovery and scoping, backlog and sprint planning, stakeholder
-      alignment, and release. Every build ships WCAG-compliant, and I've recently brought agentic AI tools into the
-      delivery pipeline without slowing teams down. I carry an active T3 government security clearance.
-    </p>
-    <p class="text-base">
-      Alongside the technical work, I've exhibited as a fine artist internationally since 2005. That studio
-      practice &mdash; thinking in composition, hierarchy, and how something actually feels to use &mdash; carries
-      directly into how I approach interfaces.
-    </p>
-    <p class="text-base statement__cta">
-      Looking for a technology leadership role that values both front-end craft and real delivery discipline &mdash;
-      let's talk.
+    <p class="text-base font-display statement__lead">
+      Across agency, enterprise, and federal government work, I lead the teams that build and ship large-scale
+      platforms (T3-cleared, WCAG by default, discovery through release) without stepping back from the front-end.
+      <a href="/about">More about my approach &rarr;</a>
     </p>
   </section>
 
@@ -105,7 +88,7 @@ const artTeaser = exhibitions.slice(0, 3);
   <section class="art-teaser" aria-labelledby="art-heading">
     <h2 id="art-heading" class="font-display text-xl text-plum section-heading">Visual art</h2>
     <p class="text-base art-teaser__sub">
-      Exhibiting nationally and internationally &mdash; art is a driving passion in its own right.
+      Exhibiting nationally and internationally. Art is a driving passion in its own right.
     </p>
     <div class="art-teaser__grid">
       {artTeaser.map((ex) => (
@@ -194,18 +177,7 @@ const artTeaser = exhibitions.slice(0, 3);
     gap: 1rem;
   }
 
-  .statement__eyebrow {
-    color: var(--color-plum);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    opacity: 0.75;
-  }
-
-  .statement__lead {
-    font-weight: 600;
-  }
-
-  .statement__cta {
+  .statement__lead a {
     color: var(--color-plum);
   }
 

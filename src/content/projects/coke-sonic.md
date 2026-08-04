@@ -31,7 +31,7 @@ gallery:
   - image: ../../assets/projects/coke-hover-home.png
     alt: Interactive hotspot showing the Operations equipment area on the virtual restaurant
   - image: ../../assets/projects/cats.png
-    alt: Categories available for franchise marketing materials — Brown Bag Special, Cherry Limeade, Combo Upgrade, and more
+    alt: "Categories available for franchise marketing materials: Brown Bag Special, Cherry Limeade, Combo Upgrade, and more"
   - image: ../../assets/projects/catlp.png
     alt: Product visualization and ordering panel for Cherry Limeade marketing elements
   - image: ../../assets/projects/mixup.png
