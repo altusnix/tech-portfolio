@@ -148,7 +148,9 @@ const skillGroups = [
   }
 
   .skills__category {
-    color: var(--color-brass-dark);
+    /* brass-dark (3.53:1) was only verified for large text/non-text use —
+       fails AA at this body-copy size. Plum (12.13:1) passes comfortably. */
+    color: var(--color-plum);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 0.6rem;

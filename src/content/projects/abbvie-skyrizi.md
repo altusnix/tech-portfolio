@@ -17,9 +17,14 @@ stack:
   - Adobe XD
   - Photoshop
   - Illustrator
-problem: "TODO: inferred, not sourced — AbbVie needed a standout, in-person experiential activation for the Skyrizi campaign rather than a static booth. Confirm or replace with the real brief."
+# TODO: problem statement inferred, not sourced — AbbVie needed a standout,
+# in-person experiential activation for the Skyrizi campaign rather than a
+# static booth. Confirm or replace with the real brief, then uncomment below.
+# problem: ""
 scope: Built an immersive, 360-degree interactive brand experience for AbbVie's Skyrizi campaign, collaborating with 3D artists and backend developers to deliver an experiential-marketing environment.
-outcome: "TODO: measurable outcome — resume doesn't call out a specific metric for this one"
+# TODO: measurable outcome — resume doesn't call out a specific metric for
+# this one. Add a real number, then uncomment below.
+# outcome: ""
 cover: ../../assets/projects/skyrizi.png
 coverAlt: Abbvie Skyrizi project interface
 featured: false

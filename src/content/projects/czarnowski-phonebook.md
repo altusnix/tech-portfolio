@@ -19,7 +19,9 @@ stack:
   - Illustrator
 problem: Clients and coworkers had no centralized, searchable way to look up Czarnowski staff and associates.
 scope: Conceptualized, designed, and developed the internal Czarnowski Phonebook site used by clients to look up coworkers and associates.
-outcome: "TODO: measurable outcome — resume doesn't call out Phonebook specifically; add usage numbers if you have them"
+# TODO: measurable outcome — resume doesn't call out Phonebook specifically;
+# add usage numbers if you have them, then uncomment below.
+# outcome: ""
 cover: ../../assets/projects/Czarnowski-Phonebook-Home-Page.jpg
 coverAlt: Czarnowski Phonebook homepage
 gallery:

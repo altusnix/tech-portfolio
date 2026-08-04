@@ -18,9 +18,7 @@ export const exhibitions: Exhibition[] = [
   {
     title: 'The Incredible Lightness of Art II',
     venue: 'Philadelphia/TriState Artists Equity',
-    // TODO: old site only ever said "Philadelphia/TriState" — confirm the
-    // actual city, don't assume it's Philadelphia proper
-    city: 'TODO: confirm city',
+    city: 'Philadelphia, PA',
     date: 'September 2025',
     image: '5.jpeg',
   },
@@ -59,32 +57,28 @@ export const exhibitions: Exhibition[] = [
   {
     title: 'Pancakes & Booze Popup Art Show',
     venue: 'Tangent Gallery',
-    // TODO: old site gave no city for this one — confirm
-    city: 'TODO: confirm city',
+    city: 'Detroit, MI',
     date: 'August 2025',
     image: '11.jpeg',
   },
   {
     title: 'The Dark Side 2025',
     venue: 'Boomer Gallery',
-    // TODO: old site gave no city for this one — confirm (there's a
-    // Boomer Gallery in London, but that's an unverified guess, not sourced)
-    city: 'TODO: confirm city',
+    city: 'London',
     date: 'July 2025',
     image: '3.jpeg',
   },
   {
     title: 'FUNGI Art Show',
     venue: 'BWAC',
-    // TODO: old site gave no city for this one — confirm
-    city: 'TODO: confirm city',
+    city: 'Brooklyn, NY',
     date: 'June 2025',
     image: '2.jpeg',
   },
   {
     title: 'Nasty Women Gallery Show',
     venue: 'Nasty Women Gallery Show',
-    city: 'TODO: confirm city',
+    city: 'Chicago, IL',
     date: '2020',
     image: 'hands2.jpeg',
   },

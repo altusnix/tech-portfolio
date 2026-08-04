@@ -21,7 +21,10 @@ stack:
   - Illustrator
 problem: Sonic franchise owners had no way to visualize Coke product placement in their restaurants before committing to it.
 scope: Led front-end development of an immersive, gamified brand experience for Coca-Cola and Sonic, letting Sonic franchise owners visualize product placement in a virtual restaurant, including a "Mix It Up" feature with cash-prize mechanics.
-outcome: "TODO: measurable outcome — resume doesn't call out a specific metric for this one; add engagement/franchise adoption numbers if you have them"
+# TODO: measurable outcome — resume doesn't call out a specific metric for
+# this one; add engagement/franchise adoption numbers if you have them,
+# then uncomment below.
+# outcome: ""
 cover: ../../assets/projects/coke-home.png
 coverAlt: Coke and Sonic interactive homepage experience
 gallery:

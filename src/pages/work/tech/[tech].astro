@@ -29,7 +29,7 @@ const filtered = sortProjectsNewestFirst(allProjects.filter((p) => p.data.stack.
     </header>
 
     <div class="work-index__grid">
-      {filtered.map((project) => <ProjectCard project={project} />)}
+      {filtered.map((project) => <ProjectCard project={project} headingLevel="h2" />)}
     </div>
   </section>
 </Layout>

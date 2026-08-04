@@ -33,9 +33,15 @@ stack:
   - Figma
   - Photoshop
   - Illustrator
-problem: "TODO: inferred, not sourced — Voximetry needed an interactive, navigable way to present dosimetry research, economics data, and resources at conferences, rather than static slides or PDFs. Confirm or replace with the real brief."
+# TODO: problem statement inferred, not sourced — Voximetry needed an
+# interactive, navigable way to present dosimetry research, economics data,
+# and resources at conferences, rather than static slides or PDFs. Confirm
+# or replace with the real brief, then uncomment below.
+# problem: ""
 scope: Built an immersive 360-degree virtual conference experience for Voximetry — spanning a lobby, an interactive "Torch Lab" data-exploration room, and a Discovery Center — collaborating with 3D artists, designers, and backend developers to deliver dosimetry visualizations, economics resources, and research content.
-outcome: "TODO: measurable outcome — see roadmap Phase 1c prompts"
+# TODO: measurable outcome — no metric confirmed yet. Add a real number,
+# then uncomment below.
+# outcome: ""
 cover: ../../assets/projects/vox0.png
 coverAlt: Voximetry 360 virtual conference lobby
 gallery:

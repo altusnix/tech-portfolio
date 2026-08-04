@@ -68,6 +68,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
 
   .site-nav__links {
     display: flex;
+    align-items: center;
     gap: 1.5rem;
     list-style: none;
   }
@@ -84,7 +85,9 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
   }
 
   .site-nav__links a[aria-current='page'] {
-    color: var(--color-brass-dark);
+    /* brass-dark (3.53:1) is fine for the border (non-text, needs 3:1) but
+       fails AA for the text itself at this size (needs 4.5:1) — plum passes */
+    color: var(--color-plum);
     border-bottom-color: var(--color-brass-dark);
     font-weight: 600;
   }
@@ -141,7 +144,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
   }
 
   .site-nav__mobile a[aria-current='page'] {
-    color: var(--color-brass-dark);
+    color: var(--color-plum);
     font-weight: 600;
   }
 

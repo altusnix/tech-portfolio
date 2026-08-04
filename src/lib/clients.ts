@@ -33,7 +33,5 @@ export const clientLogos: ClientLogo[] = [
   { name: 'Toyota', src: '/icons/toyota-logo-white.png' },
   { name: 'U.S. Army', src: '/icons/armyLogo.png' },
   { name: 'Whirlpool', src: '/icons/whirlpool-logo.png' },
-  // TODO: old site labeled this generic "Client Logo" with no real brand
-  // name attached anywhere — confirm who this is or drop it
-  { name: 'TODO: unidentified client', src: '/icons/white-logo-v.png' },
+  { name: 'Voximetry', src: '/icons/white-logo-v.png' },
 ];

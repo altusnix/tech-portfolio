@@ -23,10 +23,11 @@ const artTeaser = exhibitions.slice(0, 3);
   description="20+ years leading cross-functional teams through large-scale digital transformations for Fortune 500 clients — also an exhibiting visual artist."
 >
   <section class="hero">
-    <h1 class="font-display text-plum hero__title">I don't ship alone.<br />I ship teams.</h1>
+    <h1 class="font-display text-plum hero__title">From government platforms<br />to gallery walls.</h1>
     <p class="text-lg hero__sub">
-      Technology Lead building large-scale digital platforms with cross-functional teams &mdash; most recently at
-      Critical Mass, delivering goarmy.com for the U.S. Army and other Fortune 500 clients.
+      Technology Lead building large-scale digital platforms with cross-functional teams, and an internationally
+      exhibited fine artist. Most recently at Critical Mass, delivering goarmy.com for the U.S. Army and other
+      Fortune 500 clients.
     </p>
     <div class="hero__actions">
       <a href="/work" class="hero__cta hero__cta--primary">View the work</a>
@@ -34,16 +35,28 @@ const artTeaser = exhibitions.slice(0, 3);
     </div>
   </section>
 
-  <!--
-    TODO: draft personal statement — please edit, especially the specifics
-    I'm guessing at (exact role type, remote/hybrid preference, industries)
-  -->
   <section class="statement">
-    <p class="text-lg">
-      I'm looking for my next Technology Lead or engineering leadership role &mdash; ideally one where the work still
-      touches both sides of what I do: shipping accessible, AI-augmented platforms at scale, and leading the people
-      who build them. Five years leading cross-functional teams through complex government and enterprise platforms
-      taught me those aren't actually separate skills. Open to remote or Chicago-area roles.
+    <p class="text-sm font-mono statement__eyebrow">
+      Technology Leadership &times; Creative Practice &mdash; Front-End Engineering, Delivery, Applied AI
+    </p>
+    <p class="text-lg statement__lead">
+      I lead the teams that build and ship large-scale platforms &mdash; and I still do the front-end work myself.
+    </p>
+    <p class="text-base">
+      Over twenty years spanning agency, enterprise, and federal government work, moving between technology lead,
+      product owner, and project manager depending on what the engagement needed. I've taken teams of six to ten
+      developers through complete delivery cycles: discovery and scoping, backlog and sprint planning, stakeholder
+      alignment, and release. Every build ships WCAG-compliant, and I've recently brought agentic AI tools into the
+      delivery pipeline without slowing teams down. I carry an active T3 government security clearance.
+    </p>
+    <p class="text-base">
+      Alongside the technical work, I've exhibited as a fine artist internationally since 2005. That studio
+      practice &mdash; thinking in composition, hierarchy, and how something actually feels to use &mdash; carries
+      directly into how I approach interfaces.
+    </p>
+    <p class="text-base statement__cta">
+      Looking for a technology leadership role that values both front-end craft and real delivery discipline &mdash;
+      let's talk.
     </p>
   </section>
 
@@ -176,6 +189,24 @@ const artTeaser = exhibitions.slice(0, 3);
     padding-inline: 1.5rem;
     border-left: 3px solid var(--color-brass-dark);
     padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .statement__eyebrow {
+    color: var(--color-plum);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.75;
+  }
+
+  .statement__lead {
+    font-weight: 600;
+  }
+
+  .statement__cta {
+    color: var(--color-plum);
   }
 
   .stats {

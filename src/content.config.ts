@@ -17,9 +17,9 @@ const projects = defineCollection({
       count: z.number(),
     })),
     stack: z.array(z.string()),
-    problem: z.string(),                    // one sentence, what was broken/needed before
+    problem: z.string().optional(),         // one sentence, what was broken/needed before — omit if not confirmed
     scope: z.string(),                      // one sentence, what was built (the process)
-    outcome: z.string(),                    // one sentence, what changed
+    outcome: z.string().optional(),         // one sentence, what changed — omit if not confirmed
     cover: image(),
     coverAlt: z.string(),                   // required — no decorative covers
     gallery: z.array(z.object({

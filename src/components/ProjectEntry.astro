@@ -30,13 +30,13 @@ const dateRange = formatDateRange(yearStart, yearEnd);
       <p class="project-entry__meta text-sm">{client} &middot; {dateRange}</p>
     </header>
 
-    <p class="project-entry__beat text-base"><strong>Problem:</strong> {problem}</p>
+    {problem && <p class="project-entry__beat text-base"><strong>Problem:</strong> {problem}</p>}
 
     <CrewBar myRole={myRole} crew={crew} />
     <Legend myRole={myRole} crew={crew} />
 
     <p class="project-entry__beat text-base"><strong>Process:</strong> {scope}</p>
-    <p class="project-entry__beat text-base"><strong>Outcome:</strong> {outcome}</p>
+    {outcome && <p class="project-entry__beat text-base"><strong>Outcome:</strong> {outcome}</p>}
 
     <ul class="project-entry__stack text-xs font-mono" aria-label="Technology stack">
       {stack.map((tech) => (

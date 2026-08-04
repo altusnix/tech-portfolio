@@ -3,8 +3,8 @@
 }
 
 .resume-gate__trigger {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
+  font: inherit;
+  vertical-align: baseline;
   color: var(--color-ink);
   background: none;
   border: none;

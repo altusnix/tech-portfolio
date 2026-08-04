@@ -20,7 +20,9 @@ stack:
   - Illustrator
 problem: Clients had no self-service way to manage inventory, build wishlists, or schedule events, and no shared platform existed that could be branded per client.
 scope: Led front-end design and delivery of a white-label, multi-tenant client inventory portal, enabling clients to manage inventory, build wishlists, and schedule events — with each instance dynamically themed to match individual client branding through a reusable design system.
-outcome: "TODO: measurable outcome — resume doesn't call out a specific metric for this one"
+# TODO: measurable outcome — resume doesn't call out a specific metric for
+# this one. Add a real number, then uncomment below.
+# outcome: ""
 cover: ../../assets/projects/placeholder-cover.svg
 coverAlt: "PLACEHOLDER — no cover screenshot exists for this project on the old site; needs a real one before launch."
 featured: false

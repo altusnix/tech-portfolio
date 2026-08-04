@@ -6,17 +6,21 @@ import { formatDateRange } from '../lib/projects';
 
 interface Props {
   project: CollectionEntry<'projects'>;
+  // homepage nests cards under an "h2" section heading (h3 is correct there);
+  // /work has no such h2, so it needs h2 here instead to avoid skipping a level
+  headingLevel?: 'h2' | 'h3';
 }
 
-const { project } = Astro.props;
+const { project, headingLevel = 'h3' } = Astro.props;
 const { title, client, yearStart, yearEnd, myRole, crew, cover, coverAlt } = project.data;
 const dateRange = formatDateRange(yearStart, yearEnd);
+const Heading = headingLevel;
 ---
 
 <a href={`/work/${project.id}`} class="project-card">
   <Image src={cover} alt={coverAlt} class="project-card__cover" widths={[300, 500, 700]} sizes="(min-width: 768px) 30vw, 90vw" />
   <div class="project-card__body">
-    <h3 class="font-display text-lg text-plum">{title}</h3>
+    <Heading class="font-display text-lg text-plum">{title}</Heading>
     <p class="project-card__meta text-xs font-mono">{client} &middot; {dateRange}</p>
     <CrewBar myRole={myRole} crew={crew} />
   </div>
