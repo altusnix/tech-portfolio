@@ -167,7 +167,29 @@ accessibility). What's left is judgment, not mechanics:
 
 ---
 
-## Phase I — Other things worth doing (my additions)
+## Phase I — Work gallery: in-place tech-stack filtering
+
+Case study pages already have clickable tech-stack pills (e.g. "React") that link out to a dedicated
+`/work/tech/react` page showing every project using that technology. Add the same pill-filtering directly on
+`/work` itself, so visitors can narrow the grid in place instead of leaving the page.
+
+- [ ] Add a filter bar of tech-stack pills at the top of `/work`, sourced from the same `getAllTechStacks()`
+  helper the `/work/tech/[tech]` pages already use — no new data needed
+- [ ] Clicking a pill filters the grid to projects using that tech, client-side (no page reload); clicking
+  again clears the filter
+- [ ] Decide whether the standalone `/work/tech/[tech]` pages stay (useful for direct/shared links and SEO)
+  or get replaced entirely by the in-place filter — recommend keeping both, since the dedicated pages are
+  crawlable and linkable in a way client-side filtering isn't
+- [ ] Keep it keyboard- and screen-reader-accessible — active/inactive filter state needs to be announced,
+  not just shown with color
+- [ ] Art gallery (`/art`) stays as-is — no filtering needed there, per your call
+
+**Done when:** you can filter `/work` by clicking a tech pill without leaving the page, and it's fully
+usable by keyboard and screen reader.
+
+---
+
+## Phase J — Other things worth doing (my additions)
 
 Things not on your list but worth flagging for a job-search-ready site:
 
