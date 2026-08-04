@@ -26,6 +26,8 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20260801.1"
+    "@cloudflare/workers-types": "^5.20260801.1",
+    "@resvg/resvg-js": "^2.6.2",
+    "satori": "^0.29.0"
   }
 }
