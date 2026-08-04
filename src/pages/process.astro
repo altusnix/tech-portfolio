@@ -7,6 +7,10 @@ const moments = [
     body: 'The original palette called for brass text on the light background. Checked it against real WCAG contrast math instead of trusting the brief, and it failed even the large-text minimum, not just body text. Added a second, darker brass variant for light surfaces instead of shipping something that looked right and wasn’t.',
   },
   {
+    title: 'Diagnosed a Workers vs. Pages configuration mismatch',
+    body: 'Every image on the live site was broken, despite working perfectly in local builds. Traced it to Cloudflare’s Workers deployment path silently falling back to an on-demand image endpoint instead of serving the pre-built static files, by comparing the local build output against what actually shipped in production. Fixed by configuring the Workers-native asset bindings directly, rather than assuming the Pages-oriented defaults would apply.',
+  },
+  {
     title: 'Found a real browser bug, not just a CSS mistake',
     body: 'Client logos were silently invisible in the "Trusted by" section. Traced it to a genuine Chromium quirk: SVGs loaded via <code>&lt;img&gt;</code> with only a <code>viewBox</code> can collapse to zero size inside CSS Grid with centered items. Reproduced it in isolation before touching the real fix, so the fix was based on evidence, not a guess.',
   },
@@ -53,8 +57,8 @@ const moments = [
         The real roadmap this was built from is public. <a href="https://github.com/altusnix/tech-portfolio/blob/main/ROADMAP.md" target="_blank" rel="noopener noreferrer">Read it on GitHub<span class="sr-only"> (opens in a new tab)</span></a>.
       </p>
       <p class="text-sm process__stack">
-        Built with Astro 7, React islands (only where real interactivity is needed: a lightbox, a mobile menu),
-        and Tailwind v4. Self-hosted fonts, no third-party trackers beyond analytics.
+        Built with Astro 7, React islands (only where real interactivity is needed: a lightbox, a password-gated
+        resume download), and Tailwind v4. Self-hosted fonts, no third-party trackers beyond analytics.
       </p>
     </div>
   </section>
