@@ -142,6 +142,7 @@ const artTeaser = exhibitions.slice(0, 3);
     border-radius: 4px;
     text-decoration: none;
     font-weight: 600;
+    transition: background-color 0.15s ease, color 0.15s ease;
   }
 
   .hero__cta--primary {
@@ -149,9 +150,20 @@ const artTeaser = exhibitions.slice(0, 3);
     color: var(--color-bone);
   }
 
+  .hero__cta--primary:hover,
+  .hero__cta--primary:focus-visible {
+    background: var(--color-ink);
+  }
+
   .hero__cta--secondary {
     border: 1px solid var(--color-plum);
     color: var(--color-plum);
+  }
+
+  .hero__cta--secondary:hover,
+  .hero__cta--secondary:focus-visible {
+    background: var(--color-plum);
+    color: var(--color-bone);
   }
 
   .section-heading {
