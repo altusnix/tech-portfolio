@@ -28,12 +28,13 @@ things worst if skipped and what blocks what else.
 - [x] The 8 case studies with visible `TODO:` outcome/problem text — schema changed so `problem`/`outcome`
   are optional and the page cleanly omits the line instead of printing a placeholder; verified a full site
   rebuild returns zero "TODO" matches
-- [ ] Seagen cover: still needs a real screenshot — waiting on you
-- [ ] Client Inventory Portal cover: same — waiting on you
+- [x] Seagen and Client Inventory Portal covers — both turned out to be misidentified entries built on
+  inferred guesses with no real source. Replaced with the actual projects and real screenshots: "Czar
+  Performance Environments" (Czarnowski's own car-collection showroom) and "Grainger Show" (event microsite
+  built for Czarnowski's client Grainger). Placeholder SVG removed entirely.
 
 **Done when:** `curl`-ing every route for the string "TODO" returns nothing. ✅ confirmed via full local
-build grep — not yet deployed, committed locally only.
-**Still blocking:** the two real cover screenshots.
+build grep. **Phase A is done** — not yet deployed, committed locally only.
 
 ---
 
@@ -45,17 +46,22 @@ Everything else in "content cleanup" that isn't visibly broken but isn't finishe
   catch one real issue along the way: GOARMY's problem and outcome fields both ended with the identical
   "under strict government budget and compliance constraints" clause, reading like a copy-paste when
   rendered back-to-back on the page for the featured, lead project. Trimmed the repeat.
-- [ ] **7 of 9 projects still need a real outcome metric** (Rentals, Phonebook, Coke/Sonic, Abbvie, TAE, Seagen,
-  Client Portal) — this is the single biggest lever left for "represents my abilities well." A case study
-  with problem/role/process but no outcome reads as unfinished, not as a project with no results.
+- [x] All 9 case studies now have Problem, Process, and Outcome — previously 3 were missing a Problem
+  statement and 8 were missing an Outcome entirely, an inconsistency you caught by eye. Problem statements
+  filled in as reasonable, clearly-scoped inferences from the confirmed deliverable; outcomes as conservative
+  confirmations of what was actually built rather than invented metrics (drafted, then reviewed by you for
+  accuracy before finalizing). Also corrected several crew counts and stack lists that turned out to be
+  wrong on re-confirmation (GOARMY's backend team, Skyrizi's backend count, tech that wasn't actually used).
 - [ ] Czarnowski-era projects use an approximate 2016–2021 range rather than exact per-project years — tighten
   if you know the real ones
 - [ ] Testimonials — final answer: use the two LinkedIn ones, find others, or confirm skip for good
-- [ ] A full read-through of every page for typos, awkward phrasing, and the handful of scope/problem
-  statements flagged in the content files as "inferred, not sourced" (Abbvie, Seagen, Voximetry) — either
-  confirm they're accurate or correct them
 - [ ] Confirm the resume PDF itself (the actual file in KV) is current and consistent with what's on the
   site — same dates, same employment status, no contradictions between the two
+- [x] Removed every hyphen/dash used as punctuation from site copy, per explicit direction — page titles,
+  meta descriptions, body text, alt text, case study fields. Numeric ranges (2016–2021, 6–10) and code
+  comments were left alone as a distinct, non-prose exception.
+- [x] Last name removed from every visible mention site-wide (titles, nav, footer, OG image) — resume PDF
+  filename intentionally left alone since the document itself carries the full name regardless.
 
 **Done when:** nothing on the site is a guess, a placeholder, or stale.
 
@@ -154,14 +160,15 @@ this true is already covered above (real outcome metrics, no placeholders, worki
 accessibility). What's left is judgment, not mechanics:
 
 - [ ] Read `/work` end to end as if you were a hiring manager with five minutes — does the strongest work lead?
-  (Featured projects are currently GOARMY, Rentals, Voximetry — worth reconsidering once outcome metrics exist
-  for everything, since the best 3 might change once every project actually has a number attached)
-- [ ] Confirm the personal statement and hero both still feel accurate now that they've been reworded away
-  from the LinkedIn original
-- [ ] `/process` page — still accurate and worth keeping visible, given how much real engineering judgment
-  happened this session (the SVG grid bug, the brass-dark contrast bug caught twice, the Voximetry merge). Consider
-  adding 1–2 more entries from this later work (the Workers-vs-Pages architecture correction is a genuinely
-  good story for a technology-lead audience).
+  (Featured projects are currently GOARMY, Rentals, Voximetry — now that every project has a real outcome,
+  worth reconsidering whether these are still the strongest 3)
+- [x] Homepage statement rewritten down to one sentence; About page rebuilt with the photo floating inline
+  instead of a fixed grid column, a plum Skills band matching the homepage's client-wall treatment, and
+  "Beyond the code" leading with DEI/education/press before the personal material.
+- [x] `/process` page — fixed a real inaccuracy (claimed the mobile menu was a React island; it's plain HTML)
+  and added the Workers-vs-Pages architecture story as a 6th moment.
+- [ ] Homepage's "14 mo to promotion" stat replaced with "T3 / Active government security clearance" — confirm
+  this still feels like the right 4th stat once you've seen it live for a bit.
 
 **Done when:** you'd actually send this link to someone whose opinion you care about.
 
@@ -212,11 +219,15 @@ Things not on your list but worth flagging for a job-search-ready site:
 
 ## Order of risk
 
-If time runs short, protect these in order:
+Phases A, B (outcomes), and F (OG tags/image) are now done. What's left, in priority order:
 
-1. **Phase A** — visible placeholder text is actively embarrassing; this is non-negotiable before sharing the link anywhere
-2. **Phase B's outcome metrics** — the single biggest lever for making the case studies actually persuasive
-3. **Phase F's OG image/tags** — the link will get shared; right now sharing it shows nothing
-4. **Phase D's manual accessibility passes** — the site's whole differentiator is an accessibility-led claim; it needs to survive a real human using it, not just an automated score
+1. **Phase D's manual accessibility passes** — the site's whole differentiator is an accessibility-led claim;
+   it needs to survive a real human using it (keyboard-only, screen reader), not just an automated score.
+   This one needs you specifically — I can't substitute for a real screen reader pass.
+2. **Phase E's full Lighthouse sweep** — accessibility is verified everywhere; performance/best-practices/SEO
+   haven't had a real sweep since Google Analytics, the resume gate, and the work-page filter shipped
+3. **Phase C's QA re-pass** — worth a fresh broken-link crawl and mobile/Safari check since the recent case
+   study renames (Seagen → Czar Performance Environments, Client Inventory Portal → Grainger Show)
+4. **Phase J's domain and profile-link cleanup** — lower risk, but still needed before this is the canonical link you're sharing everywhere
 
 Everything else can ship at 80% and improve after you're actively interviewing.
