@@ -14,7 +14,7 @@ const skillGroups = [
   },
   {
     category: 'Leadership',
-    items: ['Technical Direction', 'Team Lead & Mentorship', 'Hiring & Team Building', 'Agile Coaching', 'DEIB'],
+    items: ['Technical Direction', 'Team Lead & Mentorship', 'Hiring & Team Building', 'Agile Coaching', 'DEI'],
   },
   {
     category: 'CI/CD & Release',
@@ -72,6 +72,18 @@ const skillGroups = [
 
     <h2 class="font-display text-lg text-plum">Beyond the code</h2>
     <p class="text-base">
+      Founded the Women in Tech group at Critical Mass and served as Affinity Group Women's Lead for two years,
+      leading mentorship and career-development programming for women in technical roles, recognized with a 2024
+      Women in Global Tech Community Award nomination.
+    </p>
+
+    <p class="text-base">
+      BA in Interactive Multimedia from Columbia College Chicago (honors; minors in Photography and Journalism).
+      Spoken at Columbia College Chicago, DePaul University, and Marriott; featured in Chicago Magazine, the
+      Chicago Sun-Times, and The Reader.
+    </p>
+
+    <p class="text-base">
       Directed the Burton Chill program at Raging Buffalo (2010&ndash;2018), a Burton Snowboards initiative
       putting kids without the means onto the mountain; still snowboards and rides downhill MTB today. Exhibiting
       as a fine artist in mixed media and flameworked glass since 2005. <a href="/art">Full exhibition history &rarr;</a>
@@ -93,18 +105,6 @@ const skillGroups = [
       </div>
     </div>
   </section>
-
-  <section class="facts">
-    <ul class="text-sm about__facts">
-      <li>Founded the Women in Tech group at Critical Mass</li>
-      <li>Served as Affinity Group Women's Lead for two years</li>
-      <li>Led mentorship and career-development programming for women in technical roles</li>
-      <li>2024 Women in Global Tech Community Award nomination</li>
-      <li>BA in Interactive Multimedia, Columbia College Chicago (honors; minors in Photography and Journalism)</li>
-      <li>Spoken at Columbia College Chicago, DePaul University, and Marriott</li>
-      <li>Featured in Chicago Magazine, the Chicago Sun-Times, and The Reader</li>
-    </ul>
-  </section>
 </Layout>
 
 <style>
@@ -121,42 +121,6 @@ const skillGroups = [
 
   .about p {
     margin-bottom: 1rem;
-  }
-
-  .facts {
-    max-width: 60rem;
-    margin-inline: auto;
-    padding: 3rem 1.5rem 4rem;
-  }
-
-  .about__facts {
-    list-style: none;
-    font-family: var(--font-mono);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem 1.5rem;
-  }
-
-  .about__facts li {
-    position: relative;
-    padding-left: 1rem;
-  }
-
-  .about__facts li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.55em;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-brass-dark);
-  }
-
-  @media (max-width: 640px) {
-    .about__facts {
-      grid-template-columns: 1fr;
-    }
   }
 
   .about__photo {
@@ -237,6 +201,7 @@ const skillGroups = [
   }
 
   .about h2 {
+    margin-top: 1rem;
     margin-bottom: 0.75rem;
   }
 </style>
