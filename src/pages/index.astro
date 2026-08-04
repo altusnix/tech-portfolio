@@ -180,6 +180,12 @@ const artTeaser = exhibitions.slice(0, 3);
     font-size: var(--text-sm);
   }
 
+  .section-link:hover,
+  .section-link:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
   .statement {
     max-width: 44rem;
     margin: 0 auto 3rem;
@@ -193,6 +199,12 @@ const artTeaser = exhibitions.slice(0, 3);
 
   .statement__lead a {
     color: var(--color-plum);
+  }
+
+  .statement__lead a:hover,
+  .statement__lead a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
 
   .stats {
