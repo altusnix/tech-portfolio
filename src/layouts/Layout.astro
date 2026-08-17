@@ -6,9 +6,14 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title, description = 'Robyn, Technology Leader & Visual Artist.' } = Astro.props;
+const {
+  title,
+  description = 'Robyn, Technology Leader & Visual Artist.',
+  noindex = false,
+} = Astro.props;
 const ogImage = new URL('/og-image.png', Astro.site ?? Astro.url.origin);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 ---
@@ -21,14 +26,20 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="canonical" href={canonicalUrl} />
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <link rel="canonical" href={canonicalUrl} />
+      )
+    }
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:url" content={canonicalUrl} />
+    {!noindex && <meta property="og:url" content={canonicalUrl} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -36,10 +47,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6F20WQ5T8J"></script>
-    <script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(...args: unknown[]) {
-        dataLayer.push(args);
+      // Must push the `arguments` object, not an array: gtag.js only treats
+      // entries matching [object Arguments] as commands and drops everything else.
+      function gtag() {
+        dataLayer.push(arguments);
       }
       gtag('js', new Date());
       gtag('config', 'G-6F20WQ5T8J');

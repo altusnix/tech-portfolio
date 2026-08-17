@@ -6,8 +6,8 @@ const year = new Date().getFullYear();
   <div class="site-footer__row">
     <p class="text-sm">&copy; {year} Robyn</p>
     <nav aria-label="Social links" class="site-footer__social">
-      <a href="https://github.com/altusnix" class="text-sm">GitHub</a>
-      <a href="https://www.linkedin.com/in/robyn42" class="text-sm">LinkedIn</a>
+      <a href="https://github.com/altusnix" class="text-sm" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+      <a href="https://www.linkedin.com/in/robyn42" class="text-sm" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
     </nav>
   </div>
   <p class="text-xs font-mono site-footer__stack">
@@ -52,5 +52,10 @@ const year = new Date().getFullYear();
 
   .site-footer__stack {
     color: var(--color-plum);
+  }
+
+  .site-footer__stack a {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
 </style>

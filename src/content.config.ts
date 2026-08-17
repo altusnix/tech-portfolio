@@ -11,7 +11,7 @@ const projects = defineCollection({
     myRole: z.string(),                     // "Technology Lead"
     crew: z.array(z.object({
       discipline: z.enum([
-        'front-end', 'back-end', 'design',
+        'front-end', 'back-end', 'design', '3d-design',
         'qa', 'product', 'content'
       ]),
       count: z.number(),

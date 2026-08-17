@@ -20,13 +20,13 @@ const artTeaser = exhibitions.slice(0, 3);
 
 <Layout
   title="Robyn | Technology Leader & Visual Artist"
-  description="20+ years leading cross-functional teams through large-scale digital transformations for Fortune 500 clients, and an exhibiting visual artist."
+  description="20+ years of leading cross-functional teams through large-scale digital transformations for Fortune 500 clients, and an internationally exhibited visual artist."
 >
   <section class="hero">
     <h1 class="font-display text-plum hero__title">From government platforms<br />to gallery walls.</h1>
     <p class="text-lg hero__sub">
-      Technology Lead building large-scale digital platforms with cross-functional teams, and an internationally
-      exhibited fine artist. Most recently at Critical Mass, delivering goarmy.com for the U.S. Army and other
+      Technology Lead who has built large-scale digital platforms with cross-functional teams, and an internationally
+      exhibited fine artist. Most recently led goarmy.com for the U.S. Army at Critical Mass, alongside other
       Fortune 500 clients.
     </p>
     <div class="hero__actions">
@@ -36,11 +36,11 @@ const artTeaser = exhibitions.slice(0, 3);
   </section>
 
   <section class="statement">
-    <p class="text-base font-display statement__lead">
+    <p class="text-lg font-display statement__lead">
       Across agency, enterprise, and federal government work, I lead the teams that build and ship large-scale
-      platforms (T3-cleared, WCAG by default, discovery through release) without stepping back from the front-end.
-      <a href="/about">More about my approach &rarr;</a>
+      platforms (T3-cleared, WCAG by default, discovery through release) without stepping back from the front end.
     </p>
+    <a href="/about" class="statement__link">More about my approach &rarr;</a>
   </section>
 
   <section class="stats" aria-label="Leadership at a glance">
@@ -79,7 +79,13 @@ const artTeaser = exhibitions.slice(0, 3);
     <ul class="client-wall__grid">
       {clientLogos.map((client) => (
         <li>
-          <img src={client.src} alt={client.name} loading="lazy" />
+          <img
+            src={client.src}
+            alt={client.name}
+            width={client.width}
+            height={client.height}
+            loading="lazy"
+          />
         </li>
       ))}
     </ul>
@@ -197,12 +203,15 @@ const artTeaser = exhibitions.slice(0, 3);
     gap: 1rem;
   }
 
-  .statement__lead a {
+  .statement__link {
+    display: inline-block;
     color: var(--color-plum);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
   }
 
-  .statement__lead a:hover,
-  .statement__lead a:focus-visible {
+  .statement__link:hover,
+  .statement__link:focus-visible {
     text-decoration: underline;
     text-underline-offset: 0.3em;
   }

@@ -1,8 +1,8 @@
 ---
 title: Coke/Sonic Interactive Experience
 client: Coca-Cola / Sonic
-yearStart: 2016 # Czarnowski employment range (2016-2021) — exact project year not specified
-yearEnd: 2021
+yearStart: 2020
+yearEnd: 2020
 myRole: Senior Front-End Developer
 crew:
   - discipline: design
@@ -15,14 +15,22 @@ stack:
   - Java
   - Spring
   - HTML5
+  - CSS
   - JavaScript
   - Figma
   - Photoshop
   - Illustrator
+  - Animation
+  - Graphic Design
   - Git
 problem: Sonic franchise owners had no way to visualize Coke product placement in their restaurants before committing to it.
-scope: Led front-end development of an immersive, gamified brand experience for Coca-Cola and Sonic, letting Sonic franchise owners visualize product placement in a virtual restaurant, including a "Mix It Up" feature with cash-prize mechanics.
-outcome: Gave Sonic franchise owners a gamified, interactive product-visualization tool for planning Coke placement in their restaurants, built with responsive front-end development and UI design, before committing budget to it.
+scope: |
+  Led front end development of an immersive, gamified brand experience for Coca-Cola and Sonic, letting Sonic franchise owners visualize product placement in a virtual restaurant, including a "Mix It Up" feature with cash prize mechanics.
+
+  Built the experience as an interactive, gamified environment for trade show and virtual activations, collaborating with a designer and a backend developer. Added a secure login so franchise owners could access and use the experience remotely, from anywhere. Owned end to end creative and technical delivery as lead front end designer and developer on the project, engaging directly with clients on requirements gathering, solution presentations, and stakeholder alignment.
+
+  Developed and delivered a WCAG compliant, SEO optimized, responsive, mobile first build using HTML, CSS, JavaScript, Thymeleaf, and Bootstrap.
+outcome: Gave Sonic franchise owners a gamified, interactive product visualization tool for planning Coke placement in their restaurants, built with responsive front end development and UI design, before committing budget to it.
 cover: ../../assets/projects/coke-home.png
 coverAlt: Coke and Sonic interactive homepage experience
 gallery:

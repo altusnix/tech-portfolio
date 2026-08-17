@@ -6,11 +6,11 @@ client: Voximetry
 # rooms (Lobby, Torch Lab / "Explore Torch", Discovery Center). This entry
 # used to be split into two separate projects ("Voximetry 360" and "Vox
 # Explore Torch"); merged since they're the same platform, not two clients.
-yearStart: 2016 # Czarnowski employment range (2016-2021) — exact project year not specified
-yearEnd: 2021
-myRole: Senior Front-End Developer
+yearStart: 2020
+yearEnd: 2024
+myRole: Senior Front-End Developer & Designer
 crew:
-  - discipline: design
+  - discipline: 3d-design
     count: 1
   - discipline: back-end
     count: 1
@@ -27,13 +27,19 @@ stack:
   - Marzipano
   - Bootstrap
   - HTML5
+  - CSS
   - Figma
   - Photoshop
   - Illustrator
   - Graphic Design
-problem: Voximetry needed an interactive, navigable way to present dosimetry research, economics data, and resources at conferences, rather than static slides or PDFs.
-scope: Built an immersive 360-degree virtual conference experience for Voximetry, spanning a lobby, an interactive "Torch Lab" data-exploration room, and a Discovery Center, collaborating with 3D artists, designers, and backend developers to deliver dosimetry visualizations, economics resources, and research content.
-outcome: Gave Voximetry an interactive, Marzipano-powered virtual conference platform for presenting dosimetry research and resources, replacing static slides and PDFs with an immersive digital experience.
+problem: Voximetry needed an interactive, navigable way to present dosimetry research, economics data, and resources at conferences, rather than static slides or PDFs, and the project needed a single owner for both the creative direction and the technical build rather than a typical design to development handoff.
+scope: |
+  Built an immersive 360 degree virtual conference experience for Voximetry, spanning a lobby, an interactive "Torch Lab" data exploration room, and a Discovery Center, collaborating with 3D artists, designers, and backend developers to deliver dosimetry visualizations, economics resources, and research content. Owned end to end creative and technical delivery as lead front end designer and developer on the project, engaging directly with clients on requirements gathering, solution presentations, and stakeholder alignment.
+
+  Designed and delivered a WCAG compliant, SEO optimized, responsive, mobile first experience using HTML, CSS, JavaScript, and Bootstrap.
+
+  Created a full brand asset suite to support the experience, collaborating with 3D designers on logos, icons, banners, and templates to keep visual identity consistent across the client's campaigns.
+outcome: Gave Voximetry an interactive, Marzipano powered virtual conference platform for presenting dosimetry research and resources, replacing static slides and PDFs with an immersive digital experience.
 cover: ../../assets/projects/vox0.png
 coverAlt: Voximetry 360 virtual conference lobby
 gallery:

@@ -14,19 +14,19 @@ const skillGroups = [
   },
   {
     category: 'Leadership',
-    items: ['Technical Direction', 'Team Lead & Mentorship', 'Hiring & Team Building', 'Agile Coaching', 'DEI'],
+    items: ['Technical Direction', 'Team Lead & Mentorship', 'Hiring & Team Building', 'Agile Coaching', 'Client Engagement & Stakeholder Alignment', 'DEI'],
   },
   {
     category: 'CI/CD & Release',
-    items: ['GitLab CI/CD', 'Jenkins', 'Release Governance', 'Agile', 'Scrum'],
+    items: ['GitLab CI/CD', 'Jenkins', 'Cypress & Test Automation', 'Jira & Confluence', 'Release Governance', 'Agile', 'Scrum'],
   },
   {
     category: 'Creative',
-    items: ['Figma', 'UI/UX Design', 'Design Systems', 'Typography', 'Brand Identity'],
+    items: ['Figma', 'UI/UX Design', 'Design Systems', 'Typography', 'Brand Identity', 'Animation'],
   },
   {
     category: 'Security & Compliance',
-    items: ['CAC/T3 Security Clearance (Active)', 'Federal Government Platform Compliance'],
+    items: ['CAC/T3 Security Clearance (Active)', 'Federal Government Platform Compliance', 'Pharma Marketing Compliance'],
   },
 ];
 ---
@@ -37,43 +37,51 @@ const skillGroups = [
 >
   <section class="about">
     <h1 class="font-display text-2xl text-plum">About</h1>
+    <a href="#skills-heading" class="about__skills-link">View skills &darr;</a>
 
     <Image src={profilePhoto} alt="Robyn" class="about__photo" widths={[160, 320, 480]} sizes="(min-width: 768px) 160px, 32vw" />
 
-    <p class="text-base">
-      Over twenty years spanning agency, enterprise, and federal government work, moving between technology
-      lead, product owner, and project manager depending on what the engagement needed.
+    <p class="text-lg font-display about__lead">
+      I design and build. Both, all the way through.
     </p>
 
     <p class="text-base">
-      I've taken teams of six to ten developers through complete delivery cycles: discovery and scoping,
-      backlog and sprint planning, stakeholder alignment, and release. Most recently that meant Technology Lead at
-      Critical Mass in Chicago, promoted within 14 months of joining, leading the team behind goarmy.com, a
-      high-traffic recruitment platform serving millions of monthly visitors, and establishing the governance and
-      release processes it ran on.
+      Twenty five years across agency, enterprise, and federal work. Most recently Technology Lead at
+      Critical Mass in Chicago, promoted within 14 months of joining, leading the team behind goarmy.com.
+      That is a recruitment platform serving millions of visitors a month for the U.S. Army, and I helped
+      run the governance and release process behind it. I hold an active T3 government security clearance.
     </p>
 
     <p class="text-base">
-      Every build ships WCAG-compliant, and I've recently brought agentic AI tools (Claude Code, GitHub
-      Copilot) into the delivery pipeline without slowing teams down. I carry an active T3 government
-      security clearance.
+      I have taken teams of six to ten developers through full delivery cycles. Discovery and scoping,
+      backlog and sprint planning, keeping stakeholders in the loop, release. I have also worked as
+      designer, product owner, project manager, and scrum master, because agency work rewards people who
+      can cover the gap.
     </p>
 
     <p class="text-base">
-      Alongside the technical work, I've exhibited as a fine artist internationally since 2005. That studio
-      practice (thinking in composition, hierarchy, and how something actually feels to use) carries
-      directly into how I approach interfaces. <a href="/art">See the exhibition history &rarr;</a>
+      The design work runs end to end. User flows, wireframes, prototypes, and the interface that
+      actually ships. Everything ships WCAG compliant. I brought agentic AI tools into the pipeline,
+      Claude Code and GitHub Copilot, without slowing teams down, and taught a course series at Critical
+      Mass on AI for prototyping to technical and non technical staff both.
     </p>
 
-    <p class="text-base about__cta">
-      Looking for a technology leadership role that values both front-end craft and real delivery discipline.
-      <a href="/contact">Let's talk</a>.
+    <p class="text-base">
+      I have shown work as a fine artist internationally since 2005. Composition, hierarchy, how a thing
+      feels to use. Same questions the interface work asks. <a href="/art">See the exhibition history &rarr;</a>
     </p>
+
+    <div class="about__cta">
+      <p class="text-base">
+        Looking for a technology leadership role that values both front end craft and real delivery discipline.
+      </p>
+      <a href="/contact" class="about__cta-link">Let's talk &rarr;</a>
+    </div>
 
     <h2 class="font-display text-lg text-plum">Beyond the code</h2>
     <p class="text-base">
       Founded the Women in Tech group at Critical Mass and served as Affinity Group Women's Lead for two years,
-      leading mentorship and career-development programming for women in technical roles, recognized with a 2024
+      leading mentorship and career development programming for women in technical roles, recognized with a 2024
       Women in Global Tech Community Award nomination.
     </p>
 
@@ -119,6 +127,29 @@ const skillGroups = [
     margin-bottom: 1rem;
   }
 
+  .about__lead {
+    color: var(--color-plum);
+  }
+
+  .about .about__skills-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-plum);
+    color: var(--color-plum);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .about .about__skills-link:hover,
+  .about .about__skills-link:focus-visible {
+    background: var(--color-plum);
+    color: var(--color-bone);
+    text-decoration: none;
+  }
+
   .about p {
     margin-bottom: 1rem;
   }
@@ -136,10 +167,6 @@ const skillGroups = [
 
   .about a {
     color: var(--color-plum);
-  }
-
-  .about a:hover,
-  .about a:focus-visible {
     text-decoration: underline;
     text-underline-offset: 0.3em;
   }
@@ -149,6 +176,29 @@ const skillGroups = [
     color: var(--color-plum);
     border-left: 3px solid var(--color-brass-dark);
     padding-left: 1rem;
+    margin-block: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .about__cta p {
+    margin-bottom: 0;
+  }
+
+  .about .about__cta-link {
+    display: inline-block;
+    font-weight: 400;
+    color: var(--color-plum);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    text-decoration: none;
+  }
+
+  .about .about__cta-link:hover,
+  .about .about__cta-link:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
 
   @media (max-width: 640px) {

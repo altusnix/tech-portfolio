@@ -1,6 +1,4 @@
 ---
-import ResumeGate from './ResumeGate.tsx';
-
 const navItems = [
   { href: '/work', label: 'Work' },
   { href: '/about', label: 'About' },
@@ -24,7 +22,6 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
           </a>
         </li>
       ))}
-      <li><ResumeGate client:idle /></li>
     </ul>
   </nav>
 
@@ -43,7 +40,6 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
             </a>
           </li>
         ))}
-        <li><ResumeGate client:idle /></li>
       </ul>
     </nav>
   </details>

@@ -1,9 +1,10 @@
-export type Discipline = 'front-end' | 'back-end' | 'design' | 'qa' | 'product' | 'content';
+export type Discipline = 'front-end' | 'back-end' | 'design' | '3d-design' | 'qa' | 'product' | 'content';
 
 export const disciplineLabels: Record<Discipline, { singular: string; plural: string }> = {
   'front-end': { singular: 'front-end developer', plural: 'front-end developers' },
   'back-end': { singular: 'back-end developer', plural: 'back-end developers' },
   design: { singular: 'designer', plural: 'designers' },
+  '3d-design': { singular: '3D artist', plural: '3D artists' },
   qa: { singular: 'QA engineer', plural: 'QA engineers' },
   product: { singular: 'product manager', plural: 'product managers' },
   content: { singular: 'content strategist', plural: 'content strategists' },

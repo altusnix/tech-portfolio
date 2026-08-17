@@ -14,9 +14,13 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { title, client, scope } = project.data;
+
+// scope can have multiple paragraphs (blank line separated); the meta
+// description should just be the first one, not the whole case study
+const scopeSummary = scope.split(/\n\s*\n/)[0].trim();
 ---
 
-<Layout title={`${title} | Robyn`} description={`${client}: ${scope}`}>
+<Layout title={`${title} | Robyn`} description={`${client}: ${scopeSummary}`}>
   <article class="case-study">
     <a href="/work" class="case-study__back text-sm">&larr; All work</a>
     <ProjectEntry project={project} />

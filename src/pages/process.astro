@@ -1,14 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+const scores = [
+  { page: 'Home', perf: 98, a11y: 100, bp: 100, seo: 100 },
+  { page: 'Work', perf: 98, a11y: 100, bp: 100, seo: 100 },
+  { page: 'Case study (GOARMY)', perf: 99, a11y: 100, bp: 100, seo: 100 },
+  { page: 'About', perf: 99, a11y: 100, bp: 100, seo: 100 },
+  { page: 'Art', perf: 92, a11y: 100, bp: 100, seo: 100 },
+  { page: 'Contact', perf: 99, a11y: 100, bp: 100, seo: 100 },
+  { page: 'Tech filter (React)', perf: 99, a11y: 100, bp: 100, seo: 100 },
+];
+
 const moments = [
   {
-    title: 'The design brief had a contrast bug',
-    body: 'The original palette called for brass text on the light background. Checked it against real WCAG contrast math instead of trusting the brief, and it failed even the large-text minimum, not just body text. Added a second, darker brass variant for light surfaces instead of shipping something that looked right and wasn’t.',
+    title: 'Google Analytics was live and silently broken',
+    body: 'The tag loaded correctly on every page and looked properly wired up in the markup. It was actually dropping every single hit. The tracking code pushed a plain array into <code>dataLayer</code>, but Google’s <code>gtag.js</code> only recognizes entries that match a real JavaScript arguments object, so every event was discarded before it ever reached Google’s servers. Found by reading <code>gtag.js</code> itself instead of assuming the snippet was correct because it came from Google, then fixed by pushing the actual arguments object instead of an array.',
+  },
+  {
+    title: 'Links that only had color to tell them apart',
+    body: 'A Lighthouse accessibility run flagged inline links on the homepage and About page for relying on color alone, with no underline, to be distinguishable from the surrounding sentence, a real WCAG failure for anyone colorblind or on a low contrast display. That single automated run only caught two of the four places it existed. Reading the actual audit output, not just the score, led to the same pattern in the site footer (present on every page) and the process page, both untouched by that run. Fixed everywhere by making the underline the default state, not something that only appeared on hover.',
   },
   {
     title: 'Diagnosed a Workers vs. Pages configuration mismatch',
-    body: 'Every image on the live site was broken, despite working perfectly in local builds. Traced it to Cloudflare’s Workers deployment path silently falling back to an on-demand image endpoint instead of serving the pre-built static files, by comparing the local build output against what actually shipped in production. Fixed by configuring the Workers-native asset bindings directly, rather than assuming the Pages-oriented defaults would apply.',
+    body: 'Every image on the live site was broken, despite working perfectly in local builds. Traced it to Cloudflare’s Workers deployment path silently falling back to an on demand image endpoint instead of serving the pre built static files, by comparing the local build output against what actually shipped in production. Fixed by configuring the Workers native asset bindings directly, rather than assuming the Pages oriented defaults would apply.',
   },
   {
     title: 'Found a real browser bug, not just a CSS mistake',
@@ -16,11 +30,7 @@ const moments = [
   },
   {
     title: 'Caught PII before it shipped, not after',
-    body: 'A batch of old project screenshots included one of a real internal employee directory: actual coworkers’ names and personal cell numbers. It would have been easy to use as-is; instead every image got a visual check before being attributed to a project, and that one was pulled and flagged for redaction rather than published.',
-  },
-  {
-    title: 'Two "projects" turned out to be one',
-    body: 'Two case studies were listed as separate clients. A closer look at the actual screenshots, a navigation menu literally reading "Lobby / Torch Lab / Discovery Center" inside one branded environment, proved they were the same platform. Merged them rather than leaving inaccurate history on the record.',
+    body: 'A batch of old project screenshots included one of a real internal employee directory: actual coworkers’ names and personal cell numbers. It would have been easy to use as is; instead every image got a visual check before being attributed to a project, and that one was pulled and flagged for redaction rather than published.',
   },
   {
     title: 'Every project follows the same real structure',
@@ -31,34 +41,117 @@ const moments = [
 
 <Layout
   title="How this site was built | Robyn"
-  description="A transparent look at the actual process behind this portfolio: structured planning, real bugs caught and fixed, and honest gaps left visible rather than papered over."
+  description="A technical look at how this portfolio was built: real Lighthouse scores, the accessibility work behind them, and the actual bugs caught and fixed along the way."
 >
   <section class="process">
     <header class="process__header">
       <h1 class="font-display text-2xl text-plum">How this site was built</h1>
       <p class="text-lg">
         I built this site collaboratively with Claude Code, working from a structured roadmap rather than
-        ad-hoc prompting: phases, done-when criteria, and a running log of what actually happened, not
-        just what was planned. A few moments from that process, below.
+        ad hoc prompting: phases, done when criteria, and a running log of what actually happened, not just
+        what was planned. Below: the real performance and accessibility numbers, what the stack actually is,
+        and a few moments from that process.
       </p>
     </header>
 
-    <ul class="process__list">
-      {moments.map((m) => (
-        <li class="process__item">
-          <h2 class="font-display text-lg text-plum">{m.title}</h2>
-          <p class="text-base" set:html={m.body} />
-        </li>
-      ))}
-    </ul>
+    <section class="process__section">
+      <h2 class="font-display text-xl text-plum">Lighthouse, checked on every route</h2>
+      <p class="text-base">
+        Ran Lighthouse’s command line tool directly against the built production site, not the dev server,
+        across seven representative routes: the homepage, the work index, a case study, About, Art, Contact,
+        and a tech filter page. Accessibility lands at 100 on every single one, and it got there by finding
+        and fixing real issues the tool surfaced (see the links story below), not by re running it until the
+        number looked right.
+      </p>
+      <div class="process__scores">
+        <table>
+          <caption class="sr-only">Lighthouse scores by page</caption>
+          <thead>
+            <tr>
+              <th scope="col">Page</th>
+              <th scope="col">Performance</th>
+              <th scope="col">Accessibility</th>
+              <th scope="col">Best Practices</th>
+              <th scope="col">SEO</th>
+            </tr>
+          </thead>
+          <tbody>
+            {scores.map((s) => (
+              <tr>
+                <th scope="row">{s.page}</th>
+                <td class="font-mono">{s.perf}</td>
+                <td class="font-mono">{s.a11y}</td>
+                <td class="font-mono">{s.bp}</td>
+                <td class="font-mono">{s.seo}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm process__note">
+        The one honest outlier is Art, at 92. That page renders full resolution photography of my own
+        artwork, and Lighthouse wants heavier compression than I’m willing to apply to work I actually
+        made. Left as is on purpose rather than trading image quality for a higher number.
+      </p>
+    </section>
+
+    <section class="process__section">
+      <h2 class="font-display text-xl text-plum">Built to actually be usable</h2>
+      <p class="text-base">
+        Every color pairing on the site was checked against real WCAG contrast math before shipping, not
+        eyeballed. Every interactive element (the lightbox, the password protected resume download, the work
+        page’s tech stack filter) is a real button or link with visible focus states and, for the filter,
+        an <code>aria-live</code> region that announces the result count as it changes. The lightbox and
+        resume download both trap keyboard focus while open rather than letting it leak out to the page
+        behind them.
+      </p>
+      <p class="text-base">
+        A 100 across every route is the automated third of that claim. Automated tools cannot verify
+        everything: whether a screen reader announcement actually makes sense out loud, or whether every
+        interactive element is reachable with a mouse unplugged. That human pass is part of what "done"
+        means here, not a step skipped because the score already looked good.
+      </p>
+    </section>
+
+    <section class="process__section">
+      <h2 class="font-display text-xl text-plum">Under the hood</h2>
+      <p class="text-base">
+        Astro 7 for the site itself, with React islands used only where real interactivity is needed: the
+        image lightbox and the password protected resume gate, hydrated on demand rather than shipped on
+        every page load. Styling is Tailwind v4 with self hosted fonts, no third party font requests.
+      </p>
+      <p class="text-base">
+        Project content lives in a schema validated content collection: every case study’s cover image
+        and gallery images are checked against real files at build time, so a broken image path fails the
+        build instead of shipping a broken image to production. Those images are then processed
+        automatically into responsive WebP versions at multiple widths, with explicit dimensions on every
+        tag so the browser can reserve layout space before the image loads.
+      </p>
+      <p class="text-base">
+        Hosted on Cloudflare Workers using native static asset bindings, with a KV namespace backing the
+        resume password gate rather than storing the file as a public static asset. The social preview image
+        is generated from the site’s actual fonts and color tokens with a small build script, not a
+        generic placeholder. Every page has a real canonical URL and a unique title, a sitemap and
+        robots.txt are generated automatically, and the two pages that shouldn’t be indexed (this site’s
+        404 page and the contact form’s thank you page) are explicitly marked not to be.
+      </p>
+    </section>
+
+    <section class="process__section">
+      <h2 class="font-display text-xl text-plum">A few moments from the process</h2>
+      <ul class="process__list">
+        {moments.map((m) => (
+          <li class="process__item">
+            <h3 class="font-display text-lg text-plum">{m.title}</h3>
+            <p class="text-base" set:html={m.body} />
+          </li>
+        ))}
+      </ul>
+    </section>
 
     <div class="process__footer">
       <p class="text-base">
         The real roadmap this was built from is public. <a href="https://github.com/altusnix/tech-portfolio/blob/main/ROADMAP.md" target="_blank" rel="noopener noreferrer">Read it on GitHub<span class="sr-only"> (opens in a new tab)</span></a>.
-      </p>
-      <p class="text-sm process__stack">
-        Built with Astro 7, React islands (only where real interactivity is needed: a lightbox, a password-gated
-        resume download), and Tailwind v4. Self-hosted fonts, no third-party trackers beyond analytics.
       </p>
     </div>
   </section>
@@ -80,12 +173,91 @@ const moments = [
     margin-top: 1rem;
   }
 
+  .process__section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-plum);
+  }
+
+  .process__section:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .process__section h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .process__section p {
+    margin-top: 0.75rem;
+  }
+
+  .process__scores {
+    margin-top: 1.5rem;
+    overflow-x: auto;
+    border: 1px solid color-mix(in srgb, var(--color-plum) 25%, transparent);
+    border-radius: 4px;
+  }
+
+  .process__scores table {
+    width: 100%;
+    min-width: 34rem;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  .process__scores th,
+  .process__scores td {
+    padding: 0.65rem 1.1rem;
+    text-align: right;
+    white-space: nowrap;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-plum) 15%, transparent);
+  }
+
+  .process__scores th:first-child,
+  .process__scores td:first-child {
+    text-align: left;
+  }
+
+  .process__scores thead th {
+    color: var(--color-bone);
+    background: var(--color-plum);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: none;
+  }
+
+  .process__scores tbody th {
+    font-weight: 500;
+  }
+
+  .process__scores tbody tr:last-child th,
+  .process__scores tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .process__scores tbody tr:nth-child(even) {
+    background: color-mix(in srgb, var(--color-plum) 5%, transparent);
+  }
+
+  .process__scores td {
+    font-family: var(--font-mono);
+  }
+
+  .process__note {
+    margin-top: 1rem;
+    opacity: 0.75;
+  }
+
   .process__list {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
   }
 
   .process__item {
@@ -93,7 +265,7 @@ const moments = [
     padding-left: 1.25rem;
   }
 
-  .process__item h2 {
+  .process__item h3 {
     margin-bottom: 0.5rem;
   }
 
@@ -113,16 +285,7 @@ const moments = [
 
   .process__footer a {
     color: var(--color-plum);
-  }
-
-  .process__footer a:hover,
-  .process__footer a:focus-visible {
     text-decoration: underline;
     text-underline-offset: 0.3em;
-  }
-
-  .process__stack {
-    margin-top: 0.75rem;
-    opacity: 0.75;
   }
 </style>

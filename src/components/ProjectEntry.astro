@@ -13,6 +13,16 @@ const { project } = Astro.props;
 const { title, client, yearStart, yearEnd, myRole, crew, stack, problem, scope, outcome, cover, coverAlt } = project.data;
 
 const dateRange = formatDateRange(yearStart, yearEnd);
+
+// Fields are usually one sentence, but some projects (long running ones with
+// a lot of real, ongoing work) need more than one paragraph. A blank line in
+// the frontmatter splits it; everything else renders as a single paragraph.
+function splitParagraphs(text: string): string[] {
+  return text
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+}
 ---
 
 <article class="project-entry">
@@ -30,13 +40,19 @@ const dateRange = formatDateRange(yearStart, yearEnd);
       <p class="project-entry__meta text-sm">{client} &middot; {dateRange}</p>
     </header>
 
-    {problem && <p class="project-entry__beat text-base"><strong>Problem:</strong> {problem}</p>}
+    {problem && splitParagraphs(problem).map((p, i) => (
+      <p class="project-entry__beat text-base">{i === 0 && <strong>Problem: </strong>}{p}</p>
+    ))}
 
     <CrewBar myRole={myRole} crew={crew} />
     <Legend myRole={myRole} crew={crew} />
 
-    <p class="project-entry__beat text-base"><strong>Process:</strong> {scope}</p>
-    {outcome && <p class="project-entry__beat text-base"><strong>Outcome:</strong> {outcome}</p>}
+    {splitParagraphs(scope).map((p, i) => (
+      <p class="project-entry__beat text-base">{i === 0 && <strong>Process: </strong>}{p}</p>
+    ))}
+    {outcome && splitParagraphs(outcome).map((p, i) => (
+      <p class="project-entry__beat text-base">{i === 0 && <strong>Outcome: </strong>}{p}</p>
+    ))}
 
     <ul class="project-entry__stack text-xs font-mono" aria-label="Technology stack">
       {stack.map((tech) => (

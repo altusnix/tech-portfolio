@@ -13,15 +13,22 @@ stack:
   - Java
   - Spring
   - HTML5
+  - CSS
   - JavaScript
   - Adobe XD
   - Photoshop
   - Illustrator
+  - Animation
   - Graphic Design
   - Git
-problem: Clients and coworkers had no centralized, searchable way to look up Czarnowski staff and associates.
-scope: Conceptualized, designed, and developed the internal Czarnowski Phonebook site used by clients to look up coworkers and associates.
-outcome: Replaced an ad hoc way of finding coworker contact info with a searchable, centralized internal directory and admin dashboard, improving day-to-day efficiency for clients and staff.
+problem: Clients and coworkers had no centralized, searchable way to look up Czarnowski staff and associates, and the project needed a single owner for both the creative direction and the technical build rather than a typical design to development handoff.
+scope: |
+  Conceptualized, designed, and developed the internal Czarnowski Phonebook site used by clients to look up coworkers and associates. Owned end to end creative and technical delivery as lead front end designer and developer on the project, engaging directly with clients on requirements gathering, solution presentations, and stakeholder alignment.
+
+  Designed and delivered a WCAG compliant, SEO optimized, responsive, mobile first site using HTML, CSS, JavaScript, Thymeleaf, and Bootstrap.
+
+  Created a full brand asset suite to support the site, including logos, icons, banners, and templates, keeping visual identity consistent across the client's campaigns.
+outcome: Replaced an ad hoc way of finding coworker contact info with a searchable, centralized internal directory and admin dashboard, improving day to day efficiency for clients and staff.
 cover: ../../assets/projects/Czarnowski-Phonebook-Home-Page.jpg
 coverAlt: Czarnowski Phonebook homepage
 gallery:
