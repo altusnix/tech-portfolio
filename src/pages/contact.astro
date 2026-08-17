@@ -19,6 +19,7 @@ import Layout from '../layouts/Layout.astro';
       <form id="contact-form" class="contact__form" method="POST" action="https://api.web3forms.com/submit" aria-label="Contact form">
         <input type="hidden" name="access_key" value="5d9aab6c-dbcf-4303-9827-f257f10780df" />
         <input type="hidden" name="subject" value="New message from Robyn's portfolio" />
+        <input type="hidden" name="redirect" value="https://tech-portfolio.altusnix.workers.dev/contact/thank-you" />
         <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-label="Leave this field blank" />
 
         <div class="contact__field">
@@ -80,28 +81,38 @@ import Layout from '../layouts/Layout.astro';
       submitButton.disabled = true;
       submitButton.textContent = 'Sending…';
 
+      // fetch() throws a plain network-level error (not a resolved response)
+      // when Web3Forms' CORS policy blocks this domain. That's a config
+      // problem on Web3Forms' side we can't fix from here, so fall back to
+      // a real form submission instead of just showing an error: a native
+      // POST isn't subject to CORS at all, so the message still sends even
+      // though we lose control over the success page in that fallback case.
       fetch(form.action, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(data),
       })
-        .then(function (response) {
-          return response.json().then(function (json) {
-            return { ok: response.ok, json: json };
-          });
-        })
-        .then(function (result) {
-          if (result.ok && result.json.success) {
-            window.location.href = '/contact/thank-you';
-            return;
+        .then(
+          function (response) {
+            return response.json().then(function (json) {
+              if (response.ok && json.success) {
+                window.location.href = '/contact/thank-you';
+                return;
+              }
+              submitButton.disabled = false;
+              submitButton.textContent = 'Send message';
+              status.textContent = json.message || 'Something went wrong. Please try again, or email directly.';
+              status.focus();
+            });
+          },
+          function () {
+            // form.submit() bypasses the 'submit' event entirely, so this
+            // does not re-enter this handler
+            form.submit();
           }
-          throw new Error((result.json && result.json.message) || 'Something went wrong. Please try again.');
-        })
-        .catch(function (error) {
-          submitButton.disabled = false;
-          submitButton.textContent = 'Send message';
-          status.textContent = error.message || 'Something went wrong. Please try again, or email directly.';
-          status.focus();
+        )
+        .catch(function () {
+          form.submit();
         });
     });
   })();
