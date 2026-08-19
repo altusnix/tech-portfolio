@@ -116,12 +116,18 @@ const techs = getAllTechStacks(allProjects).sort((a, b) => a.name.localeCompare(
   .work-index__count {
     margin-top: 0.85rem;
     color: var(--color-plum);
-    opacity: 0.75;
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    font-weight: 700;
   }
 
   .work-index__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    /* auto-fill (not auto-fit): keeps empty tracks in place instead of
+       collapsing them, so cards stay the same size no matter how many
+       are visible after filtering — a single result doesn't stretch to
+       fill the row. */
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
     gap: 2.5rem 2rem;
     margin-top: 1.5rem;
   }
