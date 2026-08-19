@@ -1,9 +1,13 @@
 ---
+import { getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import ArtPlate from '../components/ArtPlate.astro';
+import ArtGallery from '../components/ArtGallery.tsx';
 import { exhibitions } from '../lib/exhibitions';
 
 const artImages = import.meta.glob<{ default: ImageMetadata }>('../assets/art-portfolio/*.{jpg,jpeg}', { eager: true });
+// Watermarked copies, regenerated with: node scripts/watermark-art.mjs
+// Used only for the full size lightbox image; grid thumbnails stay clean.
+const watermarkedArtImages = import.meta.glob<{ default: ImageMetadata }>('../assets/art-portfolio-watermarked/*.{jpg,jpeg}', { eager: true });
 
 function resolveImage(filename: string) {
   const entry = Object.entries(artImages).find(([path]) => path.endsWith(`/${filename}`));
@@ -11,14 +15,37 @@ function resolveImage(filename: string) {
   return entry[1].default;
 }
 
-// group by year, most recent first — the timeline the roadmap asks for
-const byYear = new Map<string, typeof exhibitions>();
-for (const ex of exhibitions) {
-  const year = ex.date.split(' ').pop()!;
-  if (!byYear.has(year)) byYear.set(year, []);
-  byYear.get(year)!.push(ex);
+function resolveWatermarkedImage(filename: string) {
+  const entry = Object.entries(watermarkedArtImages).find(([path]) => path.endsWith(`/${filename}`));
+  if (!entry) throw new Error(`Missing watermarked art image: ${filename}`);
+  return entry[1].default;
 }
-const years = [...byYear.keys()].sort((a, b) => Number(b) - Number(a));
+
+function yearOf(date: string) {
+  return date.split(' ').pop()!;
+}
+
+const years = [...new Set(exhibitions.map((ex) => yearOf(ex.date)))].sort((a, b) => Number(b) - Number(a));
+
+const sorted = [...exhibitions].sort((a, b) => Number(yearOf(b.date)) - Number(yearOf(a.date)));
+
+const pieces = await Promise.all(
+  sorted.map(async (ex) => {
+    const source = resolveImage(ex.image);
+    const watermarkedSource = resolveWatermarkedImage(ex.image);
+    const thumb = await getImage({ src: source, width: 500, format: 'webp' });
+    const full = await getImage({ src: watermarkedSource, width: 1600, format: 'webp' });
+    return {
+      title: ex.title,
+      venue: ex.venue,
+      city: ex.city,
+      date: ex.date,
+      year: yearOf(ex.date),
+      thumbSrc: thumb.src,
+      fullSrc: full.src,
+    };
+  })
+);
 ---
 
 <Layout
@@ -34,23 +61,7 @@ const years = [...byYear.keys()].sort((a, b) => Number(b) - Number(a));
       </p>
     </header>
 
-    {years.map((year) => (
-      <div class="art-page__year">
-        <h2 class="font-display text-xl text-plum">{year}</h2>
-        <div class="art-page__grid">
-          {byYear.get(year)!.map((ex) => (
-            <ArtPlate
-              image={resolveImage(ex.image)}
-              imageAlt={ex.title}
-              title={ex.title}
-              venue={ex.venue}
-              city={ex.city}
-              date={ex.date}
-            />
-          ))}
-        </div>
-      </div>
-    ))}
+    <ArtGallery client:visible pieces={pieces} years={years} />
   </section>
 </Layout>
 
@@ -64,16 +75,5 @@ const years = [...byYear.keys()].sort((a, b) => Number(b) - Number(a));
   .art-page__header {
     padding-block: 1rem 2.5rem;
     max-width: 40rem;
-  }
-
-  .art-page__year {
-    padding-block-end: 3rem;
-  }
-
-  .art-page__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
   }
 </style>
